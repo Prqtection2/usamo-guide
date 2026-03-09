@@ -134,7 +134,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "cp ./content/problems.schema.json ./static/problems.schema.json && gatsby build",
+    "build": "node -e \"require('fs').copyFileSync('content/problems.schema.json','static/problems.schema.json')\" && gatsby build",
     "dev": "gatsby develop",
     "dev:optimized": "yarn build:css-once && concurrently \"gatsby develop\" \"yarn build:css-watch\"",
     "develop": "gatsby develop",

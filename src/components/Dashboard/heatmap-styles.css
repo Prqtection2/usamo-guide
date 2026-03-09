@@ -1,39 +1,59 @@
 .react-calendar-heatmap .color-empty {
-  fill: #ebedf0;
+  fill: var(--heatmap-empty);
 }
 
 .react-calendar-heatmap .color-scale-1 {
-  fill: #9be9a8;
+  fill: var(--heatmap-1);
 }
 
 .react-calendar-heatmap .color-scale-2 {
-  fill: #40c463;
+  fill: var(--heatmap-2);
 }
 
 .react-calendar-heatmap .color-scale-3 {
-  fill: #30a14e;
+  fill: var(--heatmap-3);
 }
 
 .react-calendar-heatmap .color-scale-4 {
-  fill: #216e39;
+  fill: var(--heatmap-4);
+}
+
+.react-calendar-heatmap rect {
+  stroke: rgba(15, 23, 42, 0.08);
+  stroke-width: 0.35;
+}
+
+.react-calendar-heatmap rect:hover {
+  stroke: rgba(217, 119, 6, 0.6);
+  filter: drop-shadow(0 0 2px rgba(217, 119, 6, 0.35));
 }
 
 .dark .react-calendar-heatmap .color-empty {
-  fill: #2d333b;
+  fill: var(--heatmap-empty);
 }
 
 .dark .react-calendar-heatmap .color-scale-1 {
-  fill: #0e4429;
+  fill: var(--heatmap-1);
 }
 
 .dark .react-calendar-heatmap .color-scale-2 {
-  fill: #006d32;
+  fill: var(--heatmap-2);
 }
 
 .dark .react-calendar-heatmap .color-scale-3 {
-  fill: #26a641;
+  fill: var(--heatmap-3);
 }
 
 .dark .react-calendar-heatmap .color-scale-4 {
-  fill: #39d353;
+  fill: var(--heatmap-4);
+}
+
+.dark .react-calendar-heatmap rect {
+  stroke: rgba(146, 137, 127, 0.308);
+  stroke-width: 0.35;
+}
+
+.dark .react-calendar-heatmap rect:hover {
+  stroke: rgba(253, 186, 116, 0.65);
+  filter: drop-shadow(0 0 2px rgba(253, 186, 116, 0.45));
 }

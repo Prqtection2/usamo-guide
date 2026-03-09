@@ -12,43 +12,43 @@ export default function StyledSelect(props) {
           : {
               control: provided => ({
                 ...provided,
-                backgroundColor: '#111827',
-                borderColor: '#374151',
+                backgroundColor: 'var(--select-bg)',
+                borderColor: 'var(--select-border)',
               }),
               menuList: provided => ({
                 ...provided,
-                borderColor: '#374151',
+                borderColor: 'var(--select-border)',
                 borderWidth: '1px',
                 borderRadius: '6px',
               }),
               menu: provided => ({
                 ...provided,
-                backgroundColor: '#111827',
+                backgroundColor: 'var(--select-menu-bg)',
               }),
               indicatorSeparator: provided => ({
                 ...provided,
-                backgroundColor: '#374151',
+                backgroundColor: 'var(--select-border)',
               }),
               indicatorsContainer: provided => ({
                 ...provided,
-                color: '#374151',
+                color: 'var(--select-border)',
               }),
               singleValue: provided => ({
                 ...provided,
-                color: 'rgba(255, 255, 255, 0.87)',
+                color: 'var(--select-text)',
               }),
               input: provided => ({
                 ...provided,
-                color: 'rgba(255, 255, 255, 0.87)',
+                color: 'var(--select-text)',
               }),
               option: (provided, { isFocused, isSelected }) => ({
                 ...provided,
                 ...(isFocused
                   ? {
-                      backgroundColor: '#4d94ff',
+                      backgroundColor: 'var(--select-option-hover)',
                     }
                   : isSelected
-                    ? { backgroundColor: '#0063e6' }
+                    ? { backgroundColor: 'var(--select-option-selected)' }
                     : {}),
               }),
             }

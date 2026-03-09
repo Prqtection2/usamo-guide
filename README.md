@@ -83,3 +83,9 @@ If you have any questions, please reach out to us at thejourneyofpranav@gmail.co
 work is licensed under a
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative
 Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
+## Acknowledgements
+
+We would like to express our sincere appreciation to the **USACO Guide** team and contributors. Their open-source work served as an important reference while building USAMO Guide. The structure, engineering decisions, and overall philosophy behind the project were incredibly helpful as we developed our own platform.
+
+In particular, the availability of their codebase made it significantly easier for us to understand how a large educational resource platform can be organized and maintained. Many aspects of our development process were informed by the design patterns and infrastructure used in USACO Guide. We are grateful to their team for openly sharing their work and helping make projects like this possible.

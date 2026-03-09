@@ -129,7 +129,7 @@ export default function TopNavigationBar({
 
       <nav
         className={classNames(
-          !transparent && 'bg-white shadow-sm dark:bg-gray-900',
+          !transparent && 'nav-surface',
           'relative'
         )}
       >

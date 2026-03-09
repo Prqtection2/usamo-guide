@@ -15,11 +15,11 @@ export default function Accordion({ label, isActive, children }) {
     <div
       className={clsx(
         'border-b border-gray-200 last:border-b-0 dark:border-gray-800',
-        isActive && 'bg-[#f7faff] dark:bg-[#16191f]'
+        isActive && 'bg-[var(--sidebar-active-bg)]'
       )}
     >
       <div
-        className="relative flex cursor-pointer items-center px-4 py-3 text-sm leading-5 font-semibold transition duration-150 ease-in-out hover:bg-blue-50 dark:hover:bg-gray-900"
+        className="relative flex cursor-pointer items-center px-4 py-3 text-sm leading-5 font-semibold transition duration-150 ease-in-out hover:bg-[var(--sidebar-hover-bg)]"
         onClick={() => setExpanded(!expanded)}
       >
         <span className="dark:text-dark-high-emphasis flex-1 text-gray-800">

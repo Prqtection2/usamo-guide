@@ -1,66 +1,66 @@
 .assignment-progress-dark div {
-  border-color: #6b7280 !important;
+  border-color: var(--assignment-border) !important;
 }
 
 .assignment-progress-dark .react-grid-Container,
 .assignment-progress-dark .react-grid-Main {
-  outline-color: #e5e7eb;
+  outline-color: var(--assignment-outline);
 }
 
 .assignment-progress-dark .react-grid-Canvas {
-  background-color: #374151;
+  background-color: var(--assignment-canvas);
 }
 
 .assignment-progress-dark .react-grid-Header,
 .assignment-progress-dark .react-grid-HeaderCell {
-  background-color: #1f2937;
+  background-color: var(--assignment-header);
 }
 
 .assignment-progress-dark .react-grid-Row div[value] {
-  background-color: #374151;
+  background-color: var(--assignment-row);
 }
 .assignment-progress-dark .react-grid-Row:hover div[value] {
-  background-color: #4b5563;
+  background-color: var(--assignment-row-hover);
 }
 .assignment-progress-light .react-grid-Row div[value='✓'] {
-  background-color: #bbf7d0 !important; /* tailwind green-200 */
+  background-color: var(--assignment-ok) !important;
 }
 .assignment-progress-light .react-grid-Row:hover div[value='✓'] {
-  background-color: #dcfce7 !important; /* tailwind green-100 */
+  background-color: var(--assignment-ok-hover) !important;
 }
 .assignment-progress-dark .react-grid-Row div[value='✓'] {
-  background-color: #065f46 !important; /* tailwind green-700 */
+  background-color: var(--assignment-ok) !important;
 }
 .assignment-progress-dark .react-grid-Row:hover div[value='✓'] {
-  background-color: #047857 !important; /* tailwind green-500 */
+  background-color: var(--assignment-ok-hover) !important;
 }
 
 .assignment-progress-light .react-grid-Row div[value='IP'] {
-  background-color: #fef08a !important;
+  background-color: var(--assignment-ip) !important;
 }
 .assignment-progress-light .react-grid-Row:hover div[value='IP'] {
-  background-color: #fef9c3 !important;
+  background-color: var(--assignment-ip-hover) !important;
 }
 .assignment-progress-dark .react-grid-Row div[value='IP'] {
-  background-color: #d97706 !important;
+  background-color: var(--assignment-ip) !important;
 }
 .assignment-progress-dark .react-grid-Row:hover div[value='IP'] {
-  background-color: #f59e0b !important;
+  background-color: var(--assignment-ip-hover) !important;
 }
 
 .assignment-progress-light .react-grid-Row div[value='-'],
 .assignment-progress-light .react-grid-Row div[value='--'] {
-  background-color: #bfdbfe !important;
+  background-color: var(--assignment-dash) !important;
 }
 .assignment-progress-light .react-grid-Row:hover div[value='-'],
 .assignment-progress-light .react-grid-Row:hover div[value='--'] {
-  background-color: #dbeafe !important;
+  background-color: var(--assignment-dash-hover) !important;
 }
 .assignment-progress-dark .react-grid-Row div[value='-'],
 .assignment-progress-dark .react-grid-Row div[value='--'] {
-  background-color: #1d4ed8 !important;
+  background-color: var(--assignment-dash) !important;
 }
 .assignment-progress-dark .react-grid-Row:hover div[value='-'],
 .assignment-progress-dark .react-grid-Row:hover div[value='--'] {
-  background-color: #2563eb !important;
+  background-color: var(--assignment-dash-hover) !important;
 }

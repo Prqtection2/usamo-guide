@@ -1,10 +1,13 @@
 /*! purgecss start ignore */
 html {
-  background-color: white;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
 }
 
 html.dark {
-  @apply text-dark-high-emphasis bg-dark-surface min-h-screen;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  min-height: 100vh;
 }
 
 html.transitioning-color-scheme,
@@ -30,11 +33,11 @@ html.transitioning-color-scheme * {
     border: 2px solid var(--color-gray-200);
   }
   .dark ::-webkit-scrollbar {
-    background-color: var(--color-gray-800);
+    background-color: var(--bg-surface);
   }
   .dark ::-webkit-scrollbar-thumb {
-    border: 2px solid var(--color-gray-800);
-    background-color: var(--color-gray-400);
+    border: 2px solid var(--bg-surface);
+    background-color: var(--border-strong);
   }
 }
 
@@ -76,11 +79,16 @@ html.transitioning-color-scheme * {
 }
 
 .markdown a {
-  @apply font-semibold text-blue-600;
+  color: var(--accent);
+  font-weight: 600;
 }
 
 .dark .markdown a {
-  color: #a9c5ea;
+  color: var(--accent-glow);
+}
+
+.markdown a:hover {
+  color: var(--accent-strong);
 }
 
 .markdown strong a,
@@ -108,11 +116,15 @@ html.transitioning-color-scheme * {
 }
 
 .markdown blockquote {
-  @apply border-l-4 border-gray-300 pr-4 pl-4 text-base text-gray-600;
+  border-left: 4px solid var(--border-strong);
+  padding-right: 1rem;
+  padding-left: 1rem;
+  color: var(--text-secondary);
 }
 
 .dark .markdown blockquote {
-  @apply text-dark-high-emphasis border-dark-med-emphasis;
+  color: var(--text-secondary);
+  border-left-color: var(--border-strong);
 }
 
 .markdown code.inline-code {
@@ -136,7 +148,9 @@ html.transitioning-color-scheme * {
 }
 
 .markdown code.inline-code {
-  @apply inline rounded-sm bg-gray-200 px-1 py-0.5 font-mono dark:bg-gray-800;
+  @apply inline rounded-sm px-1 py-0.5 font-mono;
+  background-color: var(--bg-surface-alt);
+  color: var(--text-primary);
 }
 
 .markdown table:not(.no-markdown) {
@@ -225,11 +239,13 @@ html.transitioning-color-scheme * {
 
 .markdown ol > li:before {
   content: counters(number, '.') '.';
-  @apply mr-2 font-semibold text-blue-600;
+  margin-right: 0.5rem;
+  font-weight: 600;
+  color: var(--accent);
 }
 
 .dark .markdown ol > li:before {
-  @apply text-blue-300;
+  color: var(--accent-glow);
 }
 
 .markdown kbd {
@@ -238,7 +254,7 @@ html.transitioning-color-scheme * {
 
 /* Override pygments style background color. */
 .markdown .highlight pre {
-  @apply bg-gray-100!;
+  background-color: var(--bg-surface-alt) !important;
 }
 
 .spoiler-body > pre {

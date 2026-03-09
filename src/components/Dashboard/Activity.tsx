@@ -26,12 +26,30 @@ export function ActivityHeatmap({
 }: ActivityHeatmapProps) {
   const [activeDate, setActiveDate] = React.useState<Date | null>(null);
   if (!endDate) endDate = new Date();
-  const startDate = new Date(endDate);
-  startDate.setMonth(endDate.getMonth() - 10);
+  const normalizedEndDate = new Date(endDate);
+  normalizedEndDate.setHours(0, 0, 0, 0);
+  const startDate = new Date(normalizedEndDate);
+  startDate.setMonth(normalizedEndDate.getMonth() - 10);
+
+  const heatmapValues = React.useMemo(() => {
+    const values: { date: Date; count: number }[] = [];
+    const cursor = new Date(startDate);
+
+    while (cursor <= normalizedEndDate) {
+      const key = cursor.getTime();
+      values.push({ date: new Date(cursor), count: activityCount[key] ?? 0 });
+      cursor.setDate(cursor.getDate() + 1);
+    }
+
+    return values;
+  }, [activityCount, startDate, normalizedEndDate]);
+
+  const activeDateKey = activeDate?.getTime();
+  const activeDateCount = activeDateKey ? activityCount[activeDateKey] ?? 0 : 0;
   const activeDateProblemsSolved =
-    (activeDate && problemActivities[activeDate.getTime()]?.length) ?? 0;
+    (activeDateKey && problemActivities[activeDateKey]?.length) ?? 0;
   const activeDateModulesCompleted =
-    (activeDate && moduleActivities[activeDate.getTime()]?.length) ?? 0;
+    (activeDateKey && moduleActivities[activeDateKey]?.length) ?? 0;
   return (
     <div className="py-4 sm:px-6 lg:px-8">
       <div className="bg-white px-4 py-5 shadow-sm transition sm:rounded-lg sm:p-6 dark:bg-gray-800">
@@ -39,11 +57,8 @@ export function ActivityHeatmap({
           <div className="col-span-2">
             <CalendarHeatmap
               startDate={startDate}
-              endDate={endDate}
-              values={Object.keys(activityCount).map(d => ({
-                date: new Date(Number(d)),
-                count: activityCount[Number(d)],
-              }))}
+              endDate={normalizedEndDate}
+              values={heatmapValues}
               onMouseOver={(_ev, value) => {
                 if (!value) setActiveDate(null);
                 else setActiveDate(value.date);
@@ -54,18 +69,32 @@ export function ActivityHeatmap({
                 }
                 return `color-scale-${Math.min(value.count, 4)}`;
               }}
-              tooltipDataAttrs={() => ({})}
+              tooltipDataAttrs={value => {
+                if (!value || !value.date || value.count === 0) {
+                  return { title: 'No activity' };
+                }
+
+                return {
+                  title: `${value.count} activit${value.count === 1 ? 'y' : 'ies'}`,
+                };
+              }}
             />
           </div>
           <div className="col-span-1">
             {activeDate ? (
               <div className="text-gray-800 dark:text-gray-200">
                 <b>{activeDate.toString().substring(0, 16)}</b> <br />
-                <p>{activeDateProblemsSolved} problem(s) solved</p>
-                <p>
-                  {activeDateModulesCompleted} module(s) marked practicing /
-                  completed
-                </p>
+                {activeDateCount === 0 ? (
+                  <p>No activity</p>
+                ) : (
+                  <>
+                    <p>{activeDateProblemsSolved} problem(s) solved</p>
+                    <p>
+                      {activeDateModulesCompleted} module(s) marked practicing /
+                      completed
+                    </p>
+                  </>
+                )}
               </div>
             ) : (
               <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">

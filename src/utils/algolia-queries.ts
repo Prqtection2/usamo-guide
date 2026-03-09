@@ -168,6 +168,16 @@ const queries = [
       return res;
     },
     indexName: (process.env.GATSBY_ALGOLIA_INDEX_NAME ?? 'dev') + '_problems',
+    settings: {
+      attributesForFaceting: [
+        'filterOnly(difficulty)',
+        'filterOnly(source)',
+        'filterOnly(isStarred)',
+        'filterOnly(problemModules.id)',
+        'searchable(problemModules.title)',
+        'searchable(tags)',
+      ],
+    },
     matchFields: [
       'source',
       'name',

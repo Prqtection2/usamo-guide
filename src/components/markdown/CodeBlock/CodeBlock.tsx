@@ -37,7 +37,7 @@ const CodeSnipButtonIcon = ({ className = '', ...props }) => (
   <svg
     className={clsx(
       className,
-      'text-green-700/40 hover:text-green-600/50 dark:text-[rgba(156,220,254,0.3)] dark:hover:text-[rgba(156,220,254,0.7)]'
+      'text-[color:var(--code-snip-icon-light)] hover:text-[color:var(--code-snip-icon-light-hover)] dark:text-[color:var(--code-snip-icon-dark)] dark:hover:text-[color:var(--code-snip-icon-dark-hover)]'
     )}
     {...props}
   />
@@ -51,7 +51,7 @@ const CodeSnippetLineContent = ({ className = '', ...props }) => (
   <span
     className={clsx(
       className,
-      'text-[#006600] dark:text-[#00bb00] [&:hover>span]:cursor-pointer [&:hover>span]:text-[#006600c0] dark:[&:hover>span]:text-[#00bb00c0]'
+      'text-[color:var(--code-snip-text-light)] dark:text-[color:var(--code-snip-text-dark)] [&:hover>span]:cursor-pointer [&:hover>span]:text-[color:var(--code-snip-text-light-hover)] dark:[&:hover>span]:text-[color:var(--code-snip-text-dark-hover)]'
     )}
     {...props}
   />
@@ -357,7 +357,9 @@ class CodeBlock extends React.Component<
                 }
                 style={{
                   ...style,
-                  ...(!isDarkMode && { backgroundColor: 'rgb(249, 250, 251)' }),
+                  ...(!isDarkMode && {
+                    backgroundColor: 'var(--code-block-bg-light)',
+                  }),
                   // In light mode, override background color with tailwind's bg-gray-50
                 }}
               >
@@ -394,8 +396,8 @@ class CodeBlock extends React.Component<
                         collapsed && isCodeBlockExpandable
                           ? {
                               background: isDarkMode
-                                ? 'linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)'
-                                : 'linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)',
+                                ? 'var(--code-fade-dark)'
+                                : 'var(--code-fade-light)',
                             }
                           : undefined
                       }
@@ -407,7 +409,9 @@ class CodeBlock extends React.Component<
                         className={clsx(
                           'mb-2 h-6 w-6 transform transition group-hover:-translate-y-2',
                           !collapsed && 'rotate-180',
-                          isDarkMode ? 'text-white' : 'text-black'
+                          isDarkMode
+                            ? 'text-[color:var(--code-expand-icon-dark)]'
+                            : 'text-[color:var(--code-expand-icon-light)]'
                         )}
                       >
                         <path

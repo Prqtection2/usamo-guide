@@ -46,13 +46,12 @@ const subtextClasses =
   'text-lg md:text-xl 2xl:text-2xl font-medium max-w-4xl leading-relaxed text-gray-700 dark:text-gray-400';
 const headerSubtextSpacerClasses = 'h-6 2xl:h-12';
 const whiteButtonClassesBig =
-  'text-xl bg-white px-6 py-3 md:px-8 md:py-4 rounded-lg font-medium text-gray-900 relative';
+  'accent-button text-xl px-6 py-3 md:px-8 md:py-4 rounded-lg font-medium relative';
 const whiteButtonClasses =
-  'text-lg md:text-xl bg-white px-4 py-2 md:px-6 md:py-3 rounded-lg font-medium text-gray-900 relative';
+  'accent-button text-lg md:text-xl px-4 py-2 md:px-6 md:py-3 rounded-lg font-medium relative';
 const usamoTitleClasses =
   'md:text-center font-black tracking-tight text-5xl sm:text-6xl md:text-7xl 2xl:text-8xl';
-const linkTextStyles =
-  'text-blue-600 dark:text-blue-300 transition hover:text-purple-600 dark:hover:text-purple-300';
+const linkTextStyles = 'accent-link transition';
 
 export default function IndexPage({ path }): JSX.Element {
   const currentUser = useCurrentUser();
@@ -82,7 +81,7 @@ export default function IndexPage({ path }): JSX.Element {
       </div>
 
       {/* Begin Hero */}
-      <div className="-mt-16 bg-gray-100 dark:bg-black">
+      <div className="hero-glow -mt-16 bg-gray-100 dark:bg-black">
         <div className="flex flex-col px-4 sm:px-6 md:min-h-screen lg:px-8">
           <div className="h-6 sm:h-12"></div>
 
@@ -709,7 +708,7 @@ export default function IndexPage({ path }): JSX.Element {
 
       <ContributorsSection />
 
-      <div className="bg-gray-100 dark:bg-gray-900">
+      <div className="section-footer bg-gray-100 dark:bg-gray-900">
         <div className="mx-auto max-w-(--breakpoint-xl) px-4 py-12">
           <p className="dark:text-dark-med-emphasis text-center text-base leading-6 text-gray-400">
             &copy; {new Date().getFullYear()} USAMO Guide.
