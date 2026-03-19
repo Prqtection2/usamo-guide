@@ -37,7 +37,7 @@ export default function SectionsDropdown({
             <MenuItems
               transition
               anchor="top start"
-              className={`absolute left-0 z-[100] -ml-4 w-56 rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-gray-800 ${
+              className={`absolute left-0 z-[100] -ml-4 w-56 rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-[#0D0D0D] ${
                 sidebarNav ? 'mt-2' : '-mt-2'
               } transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[enter]:ease-out data-[leave]:duration-150 data-[leave]:ease-in`}
               style={{ zIndex: 9999 }}

@@ -24,14 +24,14 @@ export const Feature = ({
     <div className="ui-card relative overflow-hidden p-5 sm:p-6 md:p-8">
       <div
         className={classNames(
-          'relative',
+          'relative text-center md:text-left',
           featurePosition === 'left' ? 'sm:pr-1' : 'sm:pl-1'
         )}
       >
         <div>
           <div
             className={classNames(
-              'mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br text-white',
+              'mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br text-white md:mx-0',
               iconClasses
             )}
           >

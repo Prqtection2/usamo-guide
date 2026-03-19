@@ -43,7 +43,7 @@ const whiteButtonClassesBig =
 const whiteButtonClasses =
   'text-lg md:text-xl bg-white px-4 py-2 md:px-6 md:py-3 rounded-lg font-medium text-gray-900 relative';
 const usamoTitleClasses =
-  'md:text-center font-extrabold tracking-tight text-5xl sm:text-6xl md:text-7xl 2xl:text-8xl bg-clip-text text-transparent bg-linear-to-b from-gray-900 to-gray-600 dark:from-white dark:to-red-200';
+  'text-center font-extrabold tracking-tight text-5xl sm:text-6xl md:text-7xl 2xl:text-8xl bg-clip-text text-transparent bg-linear-to-b from-gray-900 to-gray-600 dark:from-white dark:to-red-200';
 const linkTextStyles =
   'text-blue-600 dark:text-blue-300 transition hover:text-purple-600 dark:hover:text-purple-300';
 
@@ -152,7 +152,7 @@ export default function IndexPage({ path }): JSX.Element {
               <h1
                 className={classNames(
                   usamoTitleClasses,
-                  'mx-auto h-0 w-8/12 flex-row items-center justify-center leading-20 font-semibold dark:visible dark:h-auto'
+                  'mx-auto h-0 w-full max-w-4xl flex-row items-center justify-center leading-20 font-semibold dark:visible dark:h-auto'
                 )}
               >
                 The Only Guide You Need for Competitive Math
@@ -161,13 +161,13 @@ export default function IndexPage({ path }): JSX.Element {
 
             <div className="h-6 sm:h-8"></div>
 
-            <p className="font-brand text-8 leading-snug text-gray-800 sm:text-xl md:text-center md:!leading-normal 2xl:text-3xl dark:text-gray-300">
+            <p className="font-brand text-8 text-center leading-snug text-gray-800 sm:text-xl md:!leading-normal 2xl:text-3xl dark:text-gray-300">
               A simple, easy to follow pathway for your success
             </p>
 
             <div className="h-10 sm:h-14"></div>
 
-            <div className="flex gap-10 md:justify-center">
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-10">
               <Link
                 to="/dashboard"
                 className="inline-block rounded-full border-orange-600 bg-linear-to-br from-orange-300 to-orange-400 px-8 py-3 text-[16px] font-bold text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(251,146,60,0.4)]"
@@ -186,9 +186,9 @@ export default function IndexPage({ path }): JSX.Element {
 
             <div className="h-10 sm:h-14"></div>
 
-            <div className="flex flex-col gap-4 text-gray-600 md:justify-center md:text-sm dark:text-gray-400">
+            <div className="flex flex-col items-center gap-4 text-center text-gray-600 md:justify-center md:text-sm dark:text-gray-400">
               <span className="block font-semibold text-center">Built by the USAMO Guide community</span>
-              <div className="flex flex-wrap gap-6 md:justify-center">
+              <div className="flex w-full flex-wrap justify-center gap-4 sm:gap-6">
                 <a
                   href="https://github.com/usamoguide/usamo-guide"
                   target="_blank"

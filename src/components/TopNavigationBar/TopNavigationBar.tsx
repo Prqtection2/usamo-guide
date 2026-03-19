@@ -126,16 +126,16 @@ export default function TopNavigationBar({
       {!hidePromoBar && (
         <>
           <Banner
-            text="Join the USAMO Guide study cohort. Weekly problem sessions are live."
-            action="Learn more"
-            link="/groups"
+            text="Join the USAMO Guide Discord Server. Regular updates are posted there."
+            action="Let me Join!"
+            link="https://discord.gg/X2zx6u53XH"
           />
         </>
       )}
 
       <nav
         className={classNames(
-          !transparent && 'nav-surface',
+          //!transparent && 'nav-surface',
           'relative',
           !hidePromoBar && 'nav-with-banner'
         )}
@@ -193,27 +193,7 @@ export default function TopNavigationBar({
                     className="absolute left-1/2 z-20 -mt-2 hidden w-screen max-w-md -translate-x-1/2 transform px-2 shadow-lg transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[enter]:ease-out data-[leave]:duration-150 data-[leave]:ease-in sm:px-0 md:block lg:max-w-3xl"
                   >
                     <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black/5">
-                      <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2 dark:bg-gray-800">
-                        <Link
-                          to="/groups/"
-                          className="-m-3 flex items-start rounded-lg p-3 transition duration-150 ease-in-out hover:bg-gray-100 dark:hover:bg-gray-700"
-                        >
-                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">
-                            <UserGroupIcon
-                              className="h-6 w-6"
-                              aria-hidden="true"
-                            />
-                          </div>
-                          <div className="ml-4">
-                            <p className="dark:text-dark-high-emphasis text-base font-medium text-gray-900">
-                              Groups
-                            </p>
-                            <p className="dark:text-dark-med-emphasis mt-1 text-sm text-gray-500">
-                              A Learning Management System fully integrated with
-                              the USAMO Guide.
-                            </p>
-                          </div>
-                        </Link>
+                      <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2 dark:bg-[#0D0D0D]">
                         {resources.map(item => (
                           <a
                             key={item.name}
