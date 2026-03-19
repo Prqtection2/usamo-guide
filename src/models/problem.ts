@@ -101,6 +101,7 @@ export type AlgoliaProblemInfo = Omit<ProblemInfo, 'uniqueId'> & {
   problemModules: {
     id: string;
     title: string;
+    section?: string;
   }[];
 };
 

@@ -28,9 +28,9 @@ export default function TrustedBy() {
   const pageviewsText = (numPageviews);
 
   return (
-    <div className="max-w-4xl">
-      <dl className="rounded-lg sm:grid sm:grid-cols-3">
-        <div className="flex flex-col py-2 sm:p-0">
+    <div className="mx-auto w-full max-w-4xl">
+      <dl className="grid grid-cols-1 gap-4 rounded-lg sm:grid-cols-3 sm:gap-6">
+        <div className="flex flex-col items-center py-2 text-center sm:p-0">
           <dt className="order-2 text-lg leading-6 font-medium text-gray-600 dark:text-gray-400">
             Registered Users
           </dt>
@@ -43,7 +43,7 @@ export default function TrustedBy() {
             {usersText}
           </dd>
         </div>
-        <div className="flex flex-col py-2 sm:p-0">
+        <div className="flex flex-col items-center py-2 text-center sm:p-0">
           <dt className="order-2 text-lg leading-6 font-medium text-gray-600 dark:text-gray-400">
             Pageviews
           </dt>
@@ -58,7 +58,7 @@ export default function TrustedBy() {
             {pageviewsText}
           </dd>
         </div>
-        <div className="flex flex-col py-2 sm:p-0">
+        <div className="flex flex-col items-center py-2 text-center sm:p-0">
           <dt className="order-2 text-lg leading-6 font-medium text-gray-600 dark:text-gray-400">
             GitHub Stars
           </dt>

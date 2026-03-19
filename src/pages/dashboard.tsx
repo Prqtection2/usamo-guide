@@ -1,10 +1,6 @@
 import { graphql, Link, PageProps } from 'gatsby';
 import * as React from 'react';
-import {
-  moduleIDToSectionMap,
-  moduleIDToURLMap,
-  SECTION_LABELS,
-} from '../../content/ordering';
+import { SECTION_LABELS } from '../../content/ordering';
 import ActiveItems, { ActiveItem } from '../components/Dashboard/ActiveItems';
 import Activity from '../components/Dashboard/Activity';
 import DailyStreak from '../components/Dashboard/DailyStreak';
@@ -31,8 +27,15 @@ import {
 
 export default function DashboardPage(props: PageProps) {
   const { modules, problems } = props.data as any;
-  const moduleIDToName = modules.edges.reduce((acc, cur) => {
-    acc[cur.node.frontmatter.id] = cur.node.frontmatter.title;
+  const moduleInfoById = modules.edges.reduce((acc, cur) => {
+    const id = cur.node.frontmatter.id;
+    const division = cur.node.fields?.division;
+    if (!id || !division) return acc;
+    acc[id] = {
+      title: cur.node.frontmatter.title,
+      section: division,
+      url: `/${division}/${id}`,
+    };
     return acc;
   }, {});
   const problemIDMap = React.useMemo(() => {
@@ -41,6 +44,11 @@ export default function DashboardPage(props: PageProps) {
       const problem = cur.node;
       // ignore problems that don't have an associated module (extraProblems.json)
       if (problem.module) {
+        const moduleId = problem.module.frontmatter.id;
+        const moduleInfo = moduleInfoById[moduleId];
+        if (!moduleInfo) {
+          return acc;
+        }
         if (!(problem.uniqueId in acc)) {
           acc[problem.uniqueId] = {
             label: `${problem.source}: ${problem.name}`,
@@ -48,17 +56,15 @@ export default function DashboardPage(props: PageProps) {
           };
         }
         acc[problem.uniqueId].modules.push({
-          url: `${moduleIDToURLMap[problem.module.frontmatter.id]}/#problem-${
-            problem.uniqueId
-          }`,
-          moduleId: problem.module.frontmatter.id,
+          url: `${moduleInfo.url}/#problem-${problem.uniqueId}`,
+          moduleId,
         });
       }
       return acc;
     }, {});
 
     return res;
-  }, [problems]);
+  }, [problems, moduleInfoById]);
   const lastViewedModuleID = useLastViewedModule();
   const userProgressOnModules = useUserProgressOnModules();
   const userProgressOnProblems = useUserProgressOnProblems();
@@ -67,7 +73,7 @@ export default function DashboardPage(props: PageProps) {
   const showIgnored = useShowIgnoredSetting();
   const { signIn } = useSignIn();
 
-  const lastViewedModuleURL = moduleIDToURLMap[lastViewedModuleID];
+  const lastViewedModuleURL = moduleInfoById[lastViewedModuleID]?.url;
   const activeModules: ActiveItem[] = React.useMemo(() => {
     return Object.keys(userProgressOnModules)
       .filter(
@@ -76,20 +82,18 @@ export default function DashboardPage(props: PageProps) {
             userProgressOnModules[x] === 'Practicing' ||
             userProgressOnModules[x] === 'Skipped' ||
             (showIgnored && userProgressOnModules[x] === 'Ignored')) &&
-          moduleIDToSectionMap.hasOwnProperty(x)
+          moduleInfoById.hasOwnProperty(x)
       )
       .map(x => ({
-        label: `${SECTION_LABELS[moduleIDToSectionMap[x]]}: ${
-          moduleIDToName[x]
-        }`,
-        url: moduleIDToURLMap[x],
+        label: `${SECTION_LABELS[moduleInfoById[x].section]}: ${moduleInfoById[x].title}`,
+        url: moduleInfoById[x].url,
         status: userProgressOnModules[x] as
           | 'Skipped'
           | 'Reading'
           | 'Practicing'
           | 'Ignored',
       }));
-  }, [userProgressOnModules, showIgnored]);
+  }, [userProgressOnModules, showIgnored, moduleInfoById]);
   const activeProblems: ActiveItem[] = React.useMemo(() => {
     return Object.keys(userProgressOnProblems)
       .filter(
@@ -112,9 +116,9 @@ export default function DashboardPage(props: PageProps) {
   }, [userProgressOnProblems, showIgnored]);
 
   const lastViewedSection =
-    moduleIDToSectionMap[lastViewedModuleID] || 'foundations';
-  const moduleProgressIDs = Object.keys(moduleIDToName).filter(
-    x => moduleIDToSectionMap[x] === lastViewedSection
+    moduleInfoById[lastViewedModuleID]?.section || 'foundations';
+  const moduleProgressIDs = Object.keys(moduleInfoById).filter(
+    x => moduleInfoById[x].section === lastViewedSection
   );
   const allModulesProgressInfo = useModulesProgressInfo(moduleProgressIDs);
 
@@ -122,10 +126,10 @@ export default function DashboardPage(props: PageProps) {
     return Object.keys(problemIDMap).filter(problemID =>
       problemIDMap[problemID].modules.some(
         (module: { url: string; moduleId: string }) =>
-          moduleIDToSectionMap[module.moduleId] === lastViewedSection
+          moduleInfoById[module.moduleId]?.section === lastViewedSection
       )
     );
-  }, [problemIDMap, lastViewedSection]);
+  }, [problemIDMap, lastViewedSection, moduleInfoById]);
   const allProblemsProgressInfo = useProblemsProgressInfo(problemStatisticsIDs);
 
   const [finishedRendering, setFinishedRendering] = React.useState(false);
@@ -306,7 +310,7 @@ export default function DashboardPage(props: PageProps) {
                   }
                 >
                   {lastViewedModuleURL
-                    ? `Continue: ${moduleIDToName[lastViewedModuleID]}`
+                    ? `Continue: ${moduleInfoById[lastViewedModuleID]?.title}`
                     : 'Continue: Arithmetic and Number Theory Basics!'}
                 </Link>
               </div>
@@ -346,12 +350,20 @@ export default function DashboardPage(props: PageProps) {
 
 export const pageQuery = graphql`
   query {
-    modules: allXdm(filter: { fileAbsolutePath: { regex: "/content/" } }) {
+    modules: allXdm(
+      filter: {
+        fileAbsolutePath: { regex: "/content/" }
+        fields: { division: { ne: null } }
+      }
+    ) {
       edges {
         node {
           frontmatter {
             title
             id
+          }
+          fields {
+            division
           }
         }
       }

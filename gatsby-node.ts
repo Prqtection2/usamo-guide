@@ -11,6 +11,73 @@ import {
   ShortProblemInfo,
 } from './src/models/problem';
 
+const SECTION_FROM_CONTENT_DIR = {
+  '1_Foundations': 'foundations',
+  '2_Intermediate': 'intermediate',
+  '3_Advanced': 'advanced',
+  '4_USAMO': 'usamo',
+} as const;
+
+type SectionID = keyof typeof freshOrdering.SECTION_LABELS;
+
+const normalizePath = (p: string) => p.replace(/\\/g, '/');
+
+function getSectionFromContentRelativePath(
+  relativePath: string
+): SectionID | null {
+  const normalized = normalizePath(relativePath);
+  const [rootDir] = normalized.split('/');
+  return (SECTION_FROM_CONTENT_DIR as Record<string, SectionID>)[rootDir] ?? null;
+}
+
+function parseFrontmatterId(content: string): string | null {
+  const frontmatterMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  if (!frontmatterMatch) return null;
+  const idMatch = frontmatterMatch[1].match(
+    /^id:\s*['\"]?([^'\"\n]+)['\"]?\s*$/m
+  );
+  return idMatch ? idMatch[1].trim() : null;
+}
+
+function collectAutoModuleSectionMap() {
+  const contentRoot = path.join(__dirname, 'content');
+  const autoMap: Record<string, SectionID> = {};
+
+  const walk = (dir: string) => {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        walk(fullPath);
+        continue;
+      }
+      if (!entry.isFile() || !entry.name.endsWith('.mdx')) continue;
+
+      const relativeFromContent = path.relative(contentRoot, fullPath);
+      const section = getSectionFromContentRelativePath(relativeFromContent);
+      if (!section) continue;
+
+      const content = fs.readFileSync(fullPath, 'utf8');
+      const moduleId = parseFrontmatterId(content);
+      if (moduleId) {
+        autoMap[moduleId] = section;
+      }
+    }
+  };
+
+  if (fs.existsSync(contentRoot)) {
+    walk(contentRoot);
+  }
+
+  return autoMap;
+}
+
+const autoModuleIDToSectionMap = collectAutoModuleSectionMap();
+const resolvedModuleIDToSectionMap: Record<string, SectionID> = {
+  ...freshOrdering.moduleIDToSectionMap,
+  ...autoModuleIDToSectionMap,
+};
+
 let gitAvailable: boolean | null = null;
 
 function hasGitRepo() {
@@ -109,12 +176,20 @@ exports.onCreateNode = async api => {
         'Module ID not found in problem JSON file: ' + node.absolutePath
       );
     }
-    //const freshOrdering = importFresh<any>(
-    //  path.join(__dirname, './content/ordering.ts')
-    //);
-    if (!isExtraProblems && !(moduleId in freshOrdering.moduleIDToSectionMap)) {
+
+    const sectionFromPath = getSectionFromContentRelativePath(node.relativePath);
+    const moduleSection =
+      (moduleId && resolvedModuleIDToSectionMap[moduleId]) || sectionFromPath;
+    const mapForNode = moduleId
+      ? {
+          ...resolvedModuleIDToSectionMap,
+          ...(moduleSection ? { [moduleId]: moduleSection } : {}),
+        }
+      : resolvedModuleIDToSectionMap;
+
+    if (!isExtraProblems && !moduleSection) {
       throw new Error(
-        '.problems.json moduleId does not correspond to module: ' +
+        '.problems.json moduleId cannot be resolved from content ordering or file path: ' +
           moduleId +
           ', path: ' +
           node.absolutePath
@@ -127,7 +202,10 @@ exports.onCreateNode = async api => {
           if (process.env.CI) stream.write(metadata.uniqueId + '\n');
           transformObject(
             {
-              ...getProblemInfo(metadata, freshOrdering),
+              ...getProblemInfo(metadata, {
+                ...freshOrdering,
+                moduleIDToSectionMap: mapForNode,
+              }),
               module: moduleId,
             },
             createNodeId(
@@ -152,7 +230,10 @@ exports.onCreateNode = async api => {
           listId,
           problems: parsedContent[listId].map(x => {
             return {
-              ...getProblemInfo(x, freshOrdering),
+              ...getProblemInfo(x, {
+                ...freshOrdering,
+                moduleIDToSectionMap: mapForNode,
+              }),
             };
           }),
         }));
@@ -177,19 +258,26 @@ exports.onCreateNode = async api => {
     node.internal.type === 'Xdm' &&
     node.fileAbsolutePath.includes('content')
   ) {
-    // const ordering = importFresh<any>('./content/ordering.ts');
-    if (!(node.frontmatter.id in freshOrdering.moduleIDToSectionMap)) {
-      throw new Error(
-        'module id does not show up in ordering: ' +
-          node.frontmatter.id +
-          ', path: ' +
+    if (!node.frontmatter?.id || !node.frontmatter?.title) {
+      return;
+    }
+    const contentRoot = path.join(__dirname, 'content');
+    const relativeFromContent = path.relative(contentRoot, node.fileAbsolutePath);
+    const inferredDivision =
+      resolvedModuleIDToSectionMap[node.frontmatter.id] ||
+      getSectionFromContentRelativePath(relativeFromContent);
+
+    if (!inferredDivision) {
+      console.warn(
+        'Skipping content MDX without recognized section directory: ' +
           node.absolutePath
       );
+      return;
     }
     createNodeField({
       name: 'division',
       node,
-      value: freshOrdering.moduleIDToSectionMap[node.frontmatter.id],
+      value: inferredDivision,
     });
     // https://angelos.dev/2019/09/add-support-for-modification-times-in-gatsby/
     const gitAuthorTime = getGitAuthorTime(node.fileAbsolutePath);
@@ -226,7 +314,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     });
   const result = await graphql(`
     query CreatePagesQuery {
-      modules: allXdm(filter: { fileAbsolutePath: { regex: "/content/" } }) {
+      modules: allXdm(
+        filter: {
+          fileAbsolutePath: { regex: "/content/" }
+          fields: { division: { ne: null } }
+        }
+      ) {
         edges {
           node {
             frontmatter {
@@ -274,7 +367,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             module {
               frontmatter {
                 id
-                title
               }
             }
           }
@@ -284,6 +376,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   `);
   if (result.errors) {
     reporter.panicOnBuild('🚨 ERROR: Loading "createPages" query');
+    return;
   }
   // Check to make sure problems with the same unique ID have consistent information, and that there aren't duplicate slugs
   // Also creates user solution pages for each problem
@@ -319,10 +412,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         throw new Error(
           `The problem ${node.uniqueId} appears in both ${
             node.module.frontmatter.id
-          } - ${node.module.frontmatter.title} and ${
+          } and ${
             problemInfo[node.uniqueId].module.frontmatter.id
-          } - ${
-            problemInfo[node.uniqueId].module.frontmatter.title
           } but has different information! They need to have the same name / url / source.`
         );
       }
@@ -344,7 +435,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     problemSlugs[slug] = node.uniqueId;
     problemInfo[node.uniqueId] = node;
     problemURLToUniqueID[node.url] = node.uniqueId;
-    const path = `problems/${node.uniqueId}/user-solutions`;
+    const path = `/problems/${node.uniqueId}/user-solutions`;
     const problem = node as ShortProblemInfo;
     createPage({
       path: path,
@@ -384,7 +475,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     // );
     if (node.frontmatter.prerequisites)
       for (const prereq of node.frontmatter.prerequisites) {
-        if (!(prereq in freshOrdering.moduleIDToSectionMap)) {
+        if (!(prereq in resolvedModuleIDToSectionMap)) {
           console.warn(
             'Module ' +
               node.fileAbsolutePath +
@@ -423,8 +514,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             'Problem ' +
               node.uniqueId +
               " isn't linked to its corresponding internal solution in module " +
-              node.module.frontmatter.title +
-              ' - ' +
               node.module.frontmatter.id
           );
         });

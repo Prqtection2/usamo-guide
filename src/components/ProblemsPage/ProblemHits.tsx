@@ -2,7 +2,6 @@ import { Link } from 'gatsby';
 import { BaseHit, Hit } from 'instantsearch.js';
 import * as React from 'react';
 import { Highlight, useHits } from 'react-instantsearch';
-import { moduleIDToSectionMap } from '../../../content/ordering';
 import { useBlindMode } from '../../context/BlindModeContext';
 import { ConfettiProvider } from '../../context/ConfettiContext';
 import {
@@ -117,14 +116,20 @@ function ProblemHit({ hit }: ProblemHitProps) {
             Appears In:
           </p>
           <ul className="ml-6 list-disc">
-            {problemModules.map(({ id: moduleID, title: moduleLabel }) => (
+            {problemModules.map(({ id: moduleID, title: moduleLabel, section }) => (
               <li key={moduleID}>
-                <Link
-                  to={`/${moduleIDToSectionMap[moduleID]}/${moduleID}/#problem-${hit.objectID}`}
-                  className="text-sm text-blue-600 dark:text-blue-400"
-                >
-                  {moduleLabel}
-                </Link>
+                {section ? (
+                  <Link
+                    to={`/${section}/${moduleID}/#problem-${hit.objectID}`}
+                    className="text-sm text-blue-600 dark:text-blue-400"
+                  >
+                    {moduleLabel}
+                  </Link>
+                ) : (
+                  <span className="text-sm text-gray-500 dark:text-gray-400">
+                    {moduleLabel}
+                  </span>
+                )}
               </li>
             ))}
           </ul>

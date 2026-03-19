@@ -1,14 +1,14 @@
-import { moduleIDToSectionMap } from '../../content/ordering';
 import {
   AlgoliaEditorFile,
   AlgoliaEditorModuleFile,
   AlgoliaEditorSolutionFile,
 } from '../models/algoliaEditorFile';
 import { AlgoliaProblemInfo } from '../models/problem';
-import extractSearchableText from './extract-searchable-text';
+
+const extractSearchableText = require('./extract-searchable-text').default;
 
 const pageQuery = `{
-  pages: allXdm(filter: {fileAbsolutePath: {regex: "/content/"}}) {
+  pages: allXdm(filter: {fileAbsolutePath: {regex: "/content/"}, fields: {division: {ne: null}}}) {
     edges {
       node {
         frontmatter {
@@ -60,6 +60,9 @@ const problemsQuery = `{
           frontmatter {
             id
             title
+          }
+          fields {
+            division
           }
         }
       }
@@ -114,7 +117,7 @@ const queries = [
     query: pageQuery,
     transformer: ({ data }) =>
       data.pages.edges
-        .filter(x => x.node.frontmatter.id in moduleIDToSectionMap)
+        .filter(x => x.node.fields?.division)
         .map(pageToAlgoliaRecord),
     indexName: (process.env.GATSBY_ALGOLIA_INDEX_NAME ?? 'dev') + '_modules',
     matchFields: ['title', 'description', 'content', 'id', 'division'],
@@ -131,6 +134,7 @@ const queries = [
           ? {
               id: node.module.frontmatter.id,
               title: node.module.frontmatter.title,
+              section: node.module.fields?.division,
             }
           : null;
         if (existingProblem) {

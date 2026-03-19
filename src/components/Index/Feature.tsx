@@ -21,37 +21,11 @@ export const Feature = ({
   children: React.ReactNode;
 }): JSX.Element => {
   return (
-    <div className="flex flex-col md:flex-row md:items-center">
+    <div className="ui-card relative overflow-hidden p-5 sm:p-6 md:p-8">
       <div
         className={classNames(
-          'relative hidden md:block md:w-0 md:flex-1',
-          featurePosition === 'left' && 'md:pr-12 lg:pr-24'
-        )}
-      >
-        <div className="relative z-10">{feature}</div>
-
-        {fade !== 'none' && (
-          <div
-            className={classNames(
-              'absolute top-0 bottom-0 z-20 w-36 bg-linear-to-l from-white dark:from-gray-900',
-              featurePosition === 'left'
-                ? 'right-0 md:right-12 lg:right-24'
-                : 'right-0'
-            )}
-          />
-        )}
-
-        <div
-          className={classNames(
-            'animate-blob1 absolute inset-0 top-0 right-1/2 bottom-0 left-0 transform-gpu rounded-full opacity-[35%] blur-2xl',
-            blobClasses
-          )}
-        />
-      </div>
-      <div
-        className={classNames(
-          'md:flex-1',
-          featurePosition === 'right' && 'md:order-first md:pr-12 lg:pr-24'
+          'relative',
+          featurePosition === 'left' ? 'sm:pr-1' : 'sm:pl-1'
         )}
       >
         <div>
@@ -70,6 +44,29 @@ export const Feature = ({
         <p className="mt-2 text-gray-600 md:mt-4 md:text-lg dark:text-gray-300">
           {children}
         </p>
+
+        <div className="relative mt-6">
+          <div className="relative z-10">{feature}</div>
+
+          <div
+            className={classNames(
+              'pointer-events-none absolute -bottom-6 h-24 w-48 transform-gpu rounded-full opacity-[35%] blur-2xl',
+              featurePosition === 'left' ? '-right-6' : '-left-6',
+              blobClasses
+            )}
+          />
+        </div>
+
+        {fade !== 'none' && (
+          <div
+            className={classNames(
+              'pointer-events-none absolute inset-x-0 bottom-0 z-20 h-16 bg-linear-to-t from-white dark:from-gray-900 to-transparent',
+              featurePosition === 'left'
+                ? 'from-white dark:from-gray-900'
+                : 'from-white dark:from-gray-900'
+            )}
+          />
+        )}
       </div>
     </div>
   );

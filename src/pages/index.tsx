@@ -17,18 +17,11 @@ import * as React from 'react';
 import { GlowingRing } from '../components/elements/landing/GlowingRing';
 import { GlowingText } from '../components/elements/landing/GlowingText';
 import { GradientText } from '../components/elements/landing/GradientText';
-import { HighlightedText } from '../components/elements/landing/HighlightedText';
-import ContributorsSection from '../components/Index/ContributorsSection';
-import { CPIProjectCard } from '../components/Index/CPIProjectCard';
 import { Feature } from '../components/Index/Feature';
 import { ProblemsetsFeature } from '../components/Index/features/ProblemsetsFeature';
 import { ProgressTrackingFeature } from '../components/Index/features/ProgressTrackingFeature';
 import { ResourcesFeature } from '../components/Index/features/ResourcesFeature';
-import {
-  EasyFunCoding,
-  NonTrivial,
-  XCamp,
-} from '../components/Index/sponsor-logos';
+import ActiveCardsHome from '../components/activeCardsHome';
 import TrustedBy from '../components/Index/TrustedBy';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
@@ -46,12 +39,13 @@ const subtextClasses =
   'text-lg md:text-xl 2xl:text-2xl font-medium max-w-4xl leading-relaxed text-gray-700 dark:text-gray-400';
 const headerSubtextSpacerClasses = 'h-6 2xl:h-12';
 const whiteButtonClassesBig =
-  'accent-button text-xl px-6 py-3 md:px-8 md:py-4 rounded-lg font-medium relative';
+  'text-lg bg-white px-4 py-2 md:px-6 md:py-3 rounded-[130px] font-medium text-gray-900 relative';
 const whiteButtonClasses =
-  'accent-button text-lg md:text-xl px-4 py-2 md:px-6 md:py-3 rounded-lg font-medium relative';
+  'text-lg md:text-xl bg-white px-4 py-2 md:px-6 md:py-3 rounded-lg font-medium text-gray-900 relative';
 const usamoTitleClasses =
-  'md:text-center font-black tracking-tight text-5xl sm:text-6xl md:text-7xl 2xl:text-8xl';
-const linkTextStyles = 'accent-link transition';
+  'md:text-center font-extrabold tracking-tight text-5xl sm:text-6xl md:text-7xl 2xl:text-8xl bg-clip-text text-transparent bg-linear-to-b from-gray-900 to-gray-600 dark:from-white dark:to-red-200';
+const linkTextStyles =
+  'text-blue-600 dark:text-blue-300 transition hover:text-purple-600 dark:hover:text-purple-300';
 
 export default function IndexPage({ path }): JSX.Element {
   const currentUser = useCurrentUser();
@@ -72,308 +66,358 @@ export default function IndexPage({ path }): JSX.Element {
     }
   }, [currentUser, loading, location]);
 
+  React.useEffect(() => {
+    const htmlStyle = document.documentElement.style;
+    const bodyStyle = document.body.style;
+    const prevHtmlOverscrollY = htmlStyle.overscrollBehaviorY;
+    const prevBodyOverscrollY = bodyStyle.overscrollBehaviorY;
+
+    htmlStyle.overscrollBehaviorY = 'none';
+    bodyStyle.overscrollBehaviorY = 'none';
+
+    return () => {
+      htmlStyle.overscrollBehaviorY = prevHtmlOverscrollY;
+      bodyStyle.overscrollBehaviorY = prevBodyOverscrollY;
+    };
+  }, []);
+
   return (
     <Layout>
       <SEO title={null} image={null} pathname={path} />
 
-      <div className="bg-black">
-        <TopNavigationBar />
+      <div className="fixed top-0 z-50 w-full">
+        <div className="backdrop-blur-lg">
+          <TopNavigationBar />
+        </div>
       </div>
 
       {/* Begin Hero */}
-      <div className="hero-glow ui-page mt-0 md:-mt-16 bg-gray-100 dark:bg-black">
-        <div className="flex flex-col px-4 sm:px-6 md:min-h-screen lg:px-8">
+      <div className="relative overflow-hidden -mt-16 pt-32 bg-gray-50 dark:bg-gradient-to-b dark:from-black dark:via-black dark:to-[#1a0d00] transition-colors duration-500">
+        <div className="pointer-events-none absolute inset-0 z-0">
+          <div className="absolute inset-0 z-0 [mask-image:radial-gradient(ellipse_at_center,white_20%,transparent_75%)]">
+            <svg
+              className="h-full w-full opacity-[0.15] dark:opacity-[0.4]"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <pattern
+                  id="grid-pattern"
+                  width="50"
+                  height="50"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <path
+                    d="M 50 0 L 0 0 0 50"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    className="text-orange-400/60 dark:text-orange-500/80"
+                  />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+            </svg>
+          </div>
+        </div>
+
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(251,146,60,0.08)_0%,transparent_70%)] pointer-events-none" />
+        <div className="absolute bottom-[20%] right-[-5%] w-[30%] h-[30%] bg-purple-500/10 blur-[100px] rounded-full" />
+      
+        <div className="absolute inset-x-0 bottom-0 h-64 bg-linear-to-t from-[#160f08] to-transparent" />
+
+        <div className="relative z-10 flex flex-col px-4 sm:px-6 md:min-h-screen lg:px-8">
           <div className="h-6 sm:h-12"></div>
 
           <div className="flex flex-1 flex-col justify-center">
-            <div className="h-24"></div>
+            <div className="h-8"></div>
 
-            <div className="flex md:justify-center dark:hidden">
-              <div className={classNames(usamoTitleClasses, 'mt-4 text-black')}>
-                USAMO Guide
-              </div>
-            </div>
-            <div className="invisible flex h-0 md:justify-center dark:visible dark:h-auto">
-              <GlowingText
-                className={classNames(usamoTitleClasses, 'mt-4 text-white')}
+            <div className="mb-4 flex justify-center">
+              <a
+                href="https://github.com/usamoguide/usamo-guide"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center rounded-full border border-orange-300/80 bg-linear-to-r from-orange-100 to-amber-100 px-6 py-3 text-base font-extrabold tracking-wide text-orange-900 shadow-[0_8px_24px_rgba(251,146,60,0.25)] transition-transform duration-200 hover:-translate-y-0.5 hover:scale-105 dark:border-orange-700/60 dark:from-orange-900/40 dark:to-amber-900/30 dark:text-orange-100"
               >
-                USAMO Guide
-              </GlowingText>
+                Star us on GitHub
+              </a>
+            </div>
+
+            <div className="dark:hidden md:justify-center">
+              <h1 className={classNames(usamoTitleClasses, 'mt-4 text-black')}>
+                The Only Online Guide for Math Competition
+              </h1>
+            </div>
+
+            <div>
+              <h1
+                className={classNames(
+                  usamoTitleClasses,
+                  'mx-auto h-0 w-8/12 flex-row items-center justify-center leading-20 font-semibold dark:visible dark:h-auto'
+                )}
+              >
+                The Only Guide You Need for Competitive Math
+              </h1>
             </div>
 
             <div className="h-6 sm:h-8"></div>
 
-            <p className="text-xl leading-snug font-medium text-gray-800 sm:text-2xl md:text-center md:!leading-normal 2xl:text-3xl dark:text-gray-300">
-              A free collection of{' '}
-              <GradientText>curated, high-quality resources</GradientText>{' '}
-              <br className="hidden md:block" />
-              to take you from AMC 8 to USAMO and beyond.
+            <p className="font-brand text-8 leading-snug text-gray-800 sm:text-xl md:text-center md:!leading-normal 2xl:text-3xl dark:text-gray-300">
+              A simple, easy to follow pathway for your success
             </p>
 
-            <div className="h-8 sm:h-12"></div>
+            <div className="h-10 sm:h-14"></div>
 
-            <div className="flex md:justify-center">
+            <div className="flex gap-10 md:justify-center">
+              <Link
+                to="/dashboard"
+                className="inline-block rounded-full border-orange-600 bg-linear-to-br from-orange-300 to-orange-400 px-8 py-3 text-[16px] font-bold text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(251,146,60,0.4)]"
+              >
+                Resources {'>'}
+              </Link>
               <GlowingRing>
                 <Link
                   to="/dashboard"
-                  className={classNames(whiteButtonClassesBig, 'inline-block')}
+                  className={classNames(whiteButtonClassesBig, '!text-[15px] inline-block !font-bold')}
                 >
                   Get Started
                 </Link>
               </GlowingRing>
             </div>
+
+            <div className="h-10 sm:h-14"></div>
+
+            <div className="flex flex-col gap-4 text-gray-600 md:justify-center md:text-sm dark:text-gray-400">
+              <span className="block font-semibold text-center">Built by the USAMO Guide community</span>
+              <div className="flex flex-wrap gap-6 md:justify-center">
+                <a
+                  href="https://github.com/usamoguide/usamo-guide"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={linkTextStyles}
+                >
+                  Check out our GitHub →
+                </a>
+                <a
+                  href="https://discord.gg/X2zx6u53XH"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={linkTextStyles}
+                >
+                  Join our Discord server →
+                </a>
+                <a
+                  href="https://contests.usamoguide.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={linkTextStyles}
+                >
+                  Explore contests platform →
+                </a>
+              </div>
+            </div>
           </div>
 
           <div className="h-16 sm:h-24"></div>
-
-          <div className="flex text-gray-600 md:justify-center md:text-xl dark:text-gray-400">
-              <span>Built by the USAMO Guide community</span>
-          </div>
-          <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-base text-gray-600 md:justify-center md:text-lg dark:text-gray-400">
-            <a
-              href="https://github.com/usamoguide/usamo-guide"
-              target="_blank"
-              rel="noreferrer"
-              className={classNames(linkTextStyles, 'inline-flex items-center gap-2')}
-            >
-              <img
-                src="/images/GitHub_Invertocat_White.png"
-                alt=""
-                aria-hidden="true"
-                className="h-5 w-5"
-              />
-              <span>Check out our GitHub</span>
-            </a>
-            <a
-              href="https://discord.gg/PMyJgWjAz9"
-              target="_blank"
-              rel="noreferrer"
-              className={classNames(linkTextStyles, 'inline-flex items-center gap-2')}
-            >
-              <img
-                src="/images/Discord-Symbol-White.png"
-                alt=""
-                aria-hidden="true"
-                className="h-5 w-auto"
-              />
-              <span>Join our Discord server</span>
-            </a>
-            <a
-              href="https://contests.usamoguide.com/"
-              target="_blank"
-              rel="noreferrer"
-              className={classNames(linkTextStyles, 'inline-flex items-center gap-2')}
-            >
-              <span>Explore contests platform</span>
-            </a>
-          </div>
-          <div className="h-4 sm:h-6 md:h-16"></div>
         </div>
       </div>
       {/* End Hero */}
 
       {/* Learn Contest Math. Efficiently. */}
-      <div className="ui-page bg-white dark:bg-gray-900">
+      <div className="relative overflow-hidden bg-linear-to-b from-orange-50 to-white transition-colors duration-500 dark:bg-linear-to-b dark:from-[#160F08] dark:via-[#3a1805] dark:to-[#e85d04]/30">
         <div className="h-12 sm:h-20 md:h-36 2xl:h-48"></div>
+        <div className="pointer-events-none absolute top-0 left-1/2 h-[500px] w-full -translate-x-1/2 rounded-full bg-orange-500/10 blur-[150px] dark:bg-orange-900/25" />
 
-        <div className={containerClasses}>
-          <h2
-            className={classNames(
-              headerClassesNoText,
-              'text-black dark:text-gray-100'
-            )}
-          >
-            <div className="dark:hidden">
-              Learn contest math.{' '}
-              <HighlightedText>Efficiently.</HighlightedText>
-            </div>
-            <div className="invisible h-0 dark:visible dark:h-auto">
-              Learn contest math.{' '}
-              <HighlightedText dark>Efficiently.</HighlightedText>
-            </div>
+        <div className={classNames(containerClasses, '2xl:!max-w-[96rem]')}>
+          <h2 className="mx-auto flex flex-col items-center justify-center pb-3 text-5xl font-bold md:text-6xl dark:text-orange-50/90">
+            Learn Contest Math
           </h2>
-          <div className={headerSubtextSpacerClasses}></div>
-          <p className={subtextClasses}>
-            Stop wasting time searching for problems and tutorials. The USAMO
-            Guide provides a{' '}
-            <b className="text-black dark:text-white">
-              comprehensive, organized roadmap
-            </b>{' '}
-            carefully designed and crafted for math contest students –
-            available to everyone, for free.
+          <p className={classNames(subtextClasses, 'mx-auto w-full text-center md:!w-2/4')}>
+            Carefully designed for math contest students - available to everyone,
+            for free.
           </p>
 
           <div className="h-12 md:h-20 2xl:h-36"></div>
 
-          <Feature
-            icon={DatabaseIcon}
-            iconClasses="from-cyan-400 to-sky-500"
-            title="Curated Resources"
-            blobClasses="bg-sky-200 dark:bg-sky-800 hidden xl:block"
-            feature={<ResourcesFeature />}
-            featurePosition="left"
-          >
-            Learn new topics from a vetted list of high-quality resources. If
-            one resource doesn't click, look at another!
-          </Feature>
+          <div className="flex flex-col gap-6 lg:flex-row lg:gap-2">
+            <div className="flex-1 min-w-0">
+              <Feature
+                icon={DatabaseIcon}
+                iconClasses="from-cyan-400 to-sky-500"
+                title="Curated Resources"
+                blobClasses="bg-sky-200 hidden xl:block dark:bg-sky-800"
+                feature={<ResourcesFeature />}
+                featurePosition="left"
+              >
+                Learn new topics from a vetted list of high-quality resources.
+                If one resource doesn't click, look at another!
+              </Feature>
+            </div>
 
-          <div className="h-12 md:h-20 2xl:h-36"></div>
+            <div className="flex-1 min-w-0">
+              <Feature
+                icon={ClipboardListIcon}
+                iconClasses="from-purple-400 to-indigo-500"
+                title="Extensive Problemsets"
+                blobClasses="bg-purple-300 dark:bg-purple-800"
+                feature={<ProblemsetsFeature />}
+                featurePosition="right"
+              >
+                Practice each topic with extensive problemsets and solutions
+                covering a wide range of difficulties.
+              </Feature>
+            </div>
+          </div>
 
-          <Feature
-            icon={ClipboardListIcon}
-            iconClasses="from-purple-400 to-indigo-500"
-            title="Extensive Problemsets"
-            blobClasses="bg-purple-300 dark:bg-purple-800"
-            feature={<ProblemsetsFeature />}
-            featurePosition="right"
-          >
-            Practice each topic with extensive problemsets and solutions
-            covering a wide range of difficulties.
-          </Feature>
+          <div className="h-6 md:h-10 2xl:h-24"></div>
 
-          <div className="h-12 md:h-20 2xl:h-36"></div>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-5">
+            <div className="md:col-span-3 min-w-0">
+              <Feature
+                icon={LightningBoltIcon}
+                iconClasses="from-yellow-400 to-orange-500"
+                title="Progress Tracking"
+                blobClasses="bg-orange-200 dark:bg-orange-800"
+                feature={<ProgressTrackingFeature />}
+                featurePosition="left"
+                fade="none"
+              >
+                Use our progress-tracking tools to track your progress in the
+                Guide and stay motivated.
+              </Feature>
+            </div>
 
-          <Feature
-            icon={LightningBoltIcon}
-            iconClasses="from-yellow-400 to-orange-500"
-            title="Progress Tracking"
-            blobClasses="bg-orange-200 dark:bg-orange-800"
-            feature={<ProgressTrackingFeature />}
-            featurePosition="left"
-            fade="none"
-          >
-            Use our progress-tracking tools to track your progress in the Guide
-            and stay motivated.
-          </Feature>
+            <div className="md:col-span-2 min-w-0">
+              <Feature
+                icon={ChatAlt2Icon}
+                iconClasses="from-green-400 to-cyan-500"
+                title="Help when you need it"
+                blobClasses="bg-green-200 dark:bg-green-800"
+                feature={
+                  <div className="rounded-lg shadow-lg">
+                    <StaticImage
+                      src="../assets/nontrivial.png"
+                      alt="AoPS Community Screenshot"
+                      placeholder="blurred"
+                      layout="constrained"
+                      width={560}
+                    />
+                  </div>
+                }
+                featurePosition="right"
+                fade="none"
+              >
+                <span className="mb-4 block md:mb-8">
+                  Ask questions, share solutions, and learn from other contest
+                  students in the AoPS community.
+                </span>
 
-          <div className="h-12 md:h-20 2xl:h-36"></div>
-
-          <Feature
-            icon={ChatAlt2Icon}
-            iconClasses="from-green-400 to-cyan-500"
-            title="Help when you need it"
-            blobClasses="bg-green-200 dark:bg-green-800"
-            feature={
-              <div className="rounded-lg shadow-lg">
-                <StaticImage
-                  src="../assets/aops_banner.png"
-                  alt="AoPS Community Screenshot"
-                  placeholder="blurred"
-                  layout="constrained"
-                  width={560}
-                />
-              </div>
-            }
-            featurePosition="right"
-            fade="none"
-          >
-            <span className="mb-4 block md:mb-8">
-              Ask questions, share solutions, and learn from other contest
-              students in the AoPS community.
-            </span>
-
-            <a
-              href="https://artofproblemsolving.com/community"
-              target="_blank"
-              rel="noreferrer"
-              className={linkTextStyles}
-            >
-              Visit AoPS Community &rarr;
-            </a>
-          </Feature>
+                <a
+                  href="https://artofproblemsolving.com/community"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={linkTextStyles}
+                >
+                  Visit AoPS Community &rarr;
+                </a>
+              </Feature>
+            </div>
+          </div>
         </div>
+
         <div className="h-16 md:h-20 2xl:h-36"></div>
       </div>
       {/* End Learn contest math. */}
 
-      <div className="ui-page bg-gray-100 dark:bg-black">
+      <div className="relative overflow-hidden bg-linear-to-b from-[#e85d04]/30 via-[#3d1a04] to-[#e85d04]/40 text-center transition-colors duration-500">
         <div className="h-16 md:h-20 2xl:h-36"></div>
-        <div className={containerClasses}>
-          <div className="dark:hidden">
-            <h1 className={classNames(headerClasses)}>Trusted by Students all over the World!</h1>
+
+        <div
+          className={classNames(
+            containerClasses,
+            'relative mx-auto w-11/12 overflow-hidden rounded-4xl border border-white/60 bg-linear-to-br from-white/95 via-[#f4dcbf] to-[#fb923c] px-8 py-20 shadow-[0_20px_60px_-15px_rgba(249,115,22,0.3)] backdrop-blur-md transition-all duration-500 md:w-3/4'
+          )}
+        >
+          <div className="pointer-events-none absolute inset-0 opacity-[0.15] [mask-image:radial-gradient(ellipse_at_center,white,transparent)]">
+            <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <path
+                    d="M 40 0 L 0 0 0 40"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    className="text-orange-900"
+                  />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
           </div>
-          <div className="invisible h-0 dark:visible dark:h-auto">
-            <GlowingText
-              className={classNames(headerClassesNoText, 'text-white')}
-              extraGlow
+
+          <div className="pointer-events-none absolute -right-24 -bottom-24 h-96 w-96 rounded-full bg-orange-400/20 blur-[100px]" />
+          <div className="pointer-events-none absolute top-0 right-0 left-0 h-20 rounded-t-4xl bg-linear-to-b from-white/40 to-transparent" />
+
+          <div className="relative z-10">
+            <div className="dark:hidden">
+              <h1 className={classNames(headerClasses, 'text-orange-900')}>
+                Streamline your Learning
+              </h1>
+            </div>
+            <div className="invisible h-0 dark:visible dark:h-auto">
+              <h2 className={classNames(headerClassesNoText, 'text-orange-900 !font-bold')}>
+                Streamline your Learning
+              </h2>
+            </div>
+
+            <div className="h-4 2xl:h-12"></div>
+
+            <p
+              className={classNames(
+                subtextClasses,
+                'mx-auto w-11/12 text-center !font-medium !text-[#62210b] md:w-3/4'
+              )}
             >
-              Trusted by Students all over the World!
-            </GlowingText>
-          </div>
+              This guide is written by <span className="text-[#9a3412]">top math contest performers</span> and
+              educators who care about clean, rigorous solutions.
+            </p>
+            <div className="h-16 2xl:h-12"></div>
 
-          <div className={headerSubtextSpacerClasses}></div>
+            <div className="brightness-50 contrast-125 opacity-70">
+              <TrustedBy />
+            </div>
 
-          <p className={subtextClasses}>
-            This guide is written by{' '}
-            <GradientText>top math contest performers</GradientText> and
-            educators who care about spreading math knowledge to everyone.
-          </p>
-          <div className="h-4 2xl:h-12"></div>
+            <div className="h-8 md:h-12 2xl:h-16"></div>
 
-          <TrustedBy />
-
-          <div className="h-8 md:h-12 2xl:h-16"></div>
-
-          <div className="group relative inline-block">
-            <GlowingRing>
+            <div className="group relative inline-block">
+              <div className="absolute -inset-1 rounded-full bg-orange-600/20 opacity-0 blur-xl transition duration-500 group-hover:opacity-100"></div>
               <Link
                 to="/dashboard"
-                className={classNames(whiteButtonClasses, 'inline-block')}
+                className="relative inline-flex items-center rounded-full bg-[#2a0e06] px-12 py-4 font-bold text-orange-50 shadow-2xl transition-all hover:scale-105 hover:bg-black active:scale-95"
               >
                 View Guide
+                <svg
+                  className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
               </Link>
-            </GlowingRing>
+            </div>
           </div>
         </div>
         <div className="h-16 md:h-20 2xl:h-36"></div>
       </div>
 
-      <div className="ui-page bg-white dark:bg-gray-900">
-        <div className="h-16 md:h-20 2xl:h-36"></div>
-        <div className="px-4 sm:px-6 lg:px-8 2xl:px-16">
-          <h2 className={classNames(headerClasses, 'md:text-center')}>
-            Built by the USAMO Guide community.
-          </h2>
-          <div className="h-4 md:h-8"></div>
-          <p className={classNames(subtextClasses, 'mx-auto md:text-center')}>
-            Here are a few resources and study tools that pair well with the
-            guide.
-          </p>
+      <ActiveCardsHome/>
 
-          <div className="2xl:24 h-12 md:h-16"></div>
-
-          <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:gap-8 2xl:grid-cols-3">
-            <CPIProjectCard
-              title="AoPS Wiki Archive"
-              icon={TerminalIcon}
-              iconClasses="from-orange-400 to-pink-600"
-              url="https://artofproblemsolving.com/wiki/index.php/Main_Page"
-            >
-              Official statements and solutions for AMC/AIME/USAMO, all in one
-              place.
-            </CPIProjectCard>
-            <CPIProjectCard
-              title="Mock Contests"
-              icon={UserGroupIcon}
-              iconClasses="from-purple-500 to-indigo-500"
-              url="https://contests.usamoguide.com/"
-            >
-              Run timed sets modeled after AMC/AIME/USAMO to build endurance.
-            </CPIProjectCard>
-            <CPIProjectCard
-              title="Study Groups/Mentorship"
-              icon={CogIcon}
-              iconClasses="from-yellow-400 to-orange-500"
-              url="/groups"
-            >
-              Pair up with mentors for feedback on solutions and study plans.
-            </CPIProjectCard>
-          </div>
-        </div>
-        <div className="h-16 md:h-20 2xl:h-36"></div>
-      </div>
-
-      <div className="ui-page bg-gray-100 dark:bg-black">
+      <div className="bg-gray-100 dark:bg-black">
         <div className="h-16 md:h-20 xl:h-36 2xl:h-48"></div>
 
         <div className={containerClasses}>
@@ -392,15 +436,15 @@ export default function IndexPage({ path }): JSX.Element {
           <div className={headerSubtextSpacerClasses}></div>
           <p className={subtextClasses}>
             USAMO Guide is a student-run community dedicated to olympiad
-            mathematics. Join us to write lessons, curate problem sets, and
-            grow as a mentor alongside fellow contest enthusiasts.
+            mathematics. Join us to write lessons, curate problem sets, and grow
+            as a mentor alongside fellow contest enthusiasts.
           </p>
           <div className="h-8 md:h-12"></div>
 
           <div className="group relative inline-block">
             <GlowingRing>
               <a
-                href="https://docs.google.com/document/d/1AUNOq6OlVcSZN_gUPfvyhimlh9hA4GNvNaLdzyflX_8/edit?usp=sharing"
+                href="https://docs.google.com/document/d/13QpXqdiYQwjBLnywGL1FUG7GFdh8SM_1NigIkJl-A7k/edit?usp=sharing"
                 target="_blank"
                 rel="noreferrer"
                 className={classNames(whiteButtonClasses, 'inline-block')}
@@ -425,22 +469,38 @@ export default function IndexPage({ path }): JSX.Element {
               Or, help us financially!
             </GlowingText>
           </div>
-
-          <div className={headerSubtextSpacerClasses}></div>
-          <p className={subtextClasses}>
-            We're a <GradientText>501(c)3 nonprofit organization</GradientText>{' '}
-            — all donations are tax deductible. Since our inception in September
-            2020, we've impacted tens of thousands of students across our
-            various initiatives.
-          </p>
           <div className="h-8 md:h-12"></div>
+          <div className="flex items-center">
+            <GlowingRing>
+              <a
+                href="mailto:contact@usamoguide.com"
+                target="_blank"
+                rel="noreferrer"
+                className={classNames(whiteButtonClasses, 'inline-block')}
+              >
+                Sponsor Us
+              </a>
+            </GlowingRing>
+            <span className="ml-4 text-lg font-medium text-gray-400 md:ml-6">
+              or{' '}
+              <a
+                href="https://www.paypal.com/donate?hosted_button_id=FKG88TSTN82E4"
+                target="_blank"
+                rel="noreferrer"
+                className={linkTextStyles}
+              >
+                Donate via PayPal
+              </a>
+            </span>
+            <br />
+          </div>
         </div>
 
         <div className="h-16 md:h-20 xl:h-36 2xl:h-48"></div>
       </div>
 
       {/* Begin FAQ */}
-      <div className="ui-page dark:bg-dark-surface bg-white">
+      <div className="dark:bg-dark-surface bg-white">
         <div className="mx-auto max-w-(--breakpoint-xl) px-4 pt-12 pb-16 sm:px-6 sm:pt-16 sm:pb-20 lg:px-8 lg:pt-20 lg:pb-28">
           <h2 className={classNames(headerClasses, 'dark:text-gray-100')}>
             Frequently asked questions
@@ -520,7 +580,7 @@ export default function IndexPage({ path }): JSX.Element {
                   <dd className="mt-2">
                     <p className="text-base leading-6 text-gray-500 dark:text-gray-400">
                       Not at all. The guide is designed to support AMC 8, AMC
-                      10/12, AIME, and USAMO learners at every level.
+                      10/12, and AIME learners to reach USAMO.
                     </p>
                   </dd>
                 </div>
@@ -588,9 +648,7 @@ export default function IndexPage({ path }): JSX.Element {
       </div>
       {/*End FAQ*/}
 
-      {/*<ContributorsSection />*/}
-
-      <div className="section-footer bg-gray-100 dark:bg-gray-900">
+      <div className="bg-gray-100 dark:bg-gray-900">
         <div className="mx-auto max-w-(--breakpoint-xl) px-4 py-12">
           <p className="dark:text-dark-med-emphasis text-center text-base leading-6 text-gray-400">
             &copy; {new Date().getFullYear()} USAMO Guide.

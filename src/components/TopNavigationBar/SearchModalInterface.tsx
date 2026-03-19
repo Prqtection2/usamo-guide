@@ -10,7 +10,7 @@ import {
   useHits,
   useSearchBox,
 } from 'react-instantsearch';
-import { moduleIDToURLMap, SECTION_LABELS } from '../../../content/ordering';
+import { SECTION_LABELS } from '../../../content/ordering';
 import { AlgoliaModuleInfoHit } from '../../models/module';
 import { searchClient } from '../../utils/algoliaSearchClient';
 
@@ -40,7 +40,7 @@ const ModuleSearch = () => {
           <div className="max-h-[20rem] divide-y divide-gray-200 overflow-y-auto border-t border-gray-200 sm:max-h-[40rem] dark:divide-gray-700 dark:border-gray-700">
             {hits.map(hit => (
               <Link
-                to={moduleIDToURLMap[hit.id]}
+                to={`/${hit.division}/${hit.id}`}
                 className="block px-5 py-3 transition hover:bg-blue-100 dark:hover:bg-gray-700"
                 key={hit.id}
               >

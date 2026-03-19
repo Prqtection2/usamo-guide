@@ -7,10 +7,12 @@ export const getModulesForDivision = (
   },
   division: keyof typeof MODULE_ORDERING
 ) => {
-  return MODULE_ORDERING[division].map(k => ({
+  const orderedModuleIDs = new Set<string>();
+  const orderedChapters = MODULE_ORDERING[division].map(k => ({
     name: k.name,
     items: k.items
       .map(k2 => {
+        orderedModuleIDs.add(k2);
         if (!allModules.hasOwnProperty(k2)) {
           console.warn(`Module not found in ${division}: ${k2}`);
           return null;
@@ -23,6 +25,27 @@ export const getModulesForDivision = (
       .filter(Boolean),
     description: k.description,
   }));
+
+  const uncategorizedItems = Object.values(allModules)
+    .filter(module => !orderedModuleIDs.has(module.frontmatter.id))
+    .map(module => ({
+      ...module,
+      slug: `/${division}/${module.frontmatter.id}`,
+    }));
+
+  if (uncategorizedItems.length === 0) {
+    return orderedChapters;
+  }
+
+  return [
+    ...orderedChapters,
+    {
+      name: 'Uncategorized',
+      items: uncategorizedItems,
+      description:
+        'Auto-discovered modules not yet placed in a syllabus chapter.',
+    },
+  ];
 };
 
 export function graphqlToModuleInfo(mdx): ModuleInfo {

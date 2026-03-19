@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {
-  moduleIDToSectionMap,
   SECTION_LABELS,
   SECTION_SEO_DESCRIPTION,
   SECTION_SEO_TITLES,
@@ -217,7 +216,7 @@ export default function SyllabusPage({
                       link={
                         new ModuleLinkInfo(
                           item.frontmatter.id,
-                          moduleIDToSectionMap[item.frontmatter.id],
+                          division,
                           item.frontmatter.title,
                           item.frontmatter.description,
                           item.frontmatter.frequency as ModuleFrequency,

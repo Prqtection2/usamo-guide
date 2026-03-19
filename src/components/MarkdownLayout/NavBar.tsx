@@ -25,7 +25,11 @@ const NavBar = ({ alignNavButtonsRight = true }) => {
     () => sortedModuleLinks?.findIndex(x => x.id === markdownLayoutInfo.id),
     [markdownLayoutInfo, sortedModuleLinks]
   ) as number;
-  if (!sortedModuleLinks || markdownLayoutInfo instanceof SolutionInfo) {
+  if (
+    !sortedModuleLinks ||
+    markdownLayoutInfo instanceof SolutionInfo ||
+    moduleIdx < 0
+  ) {
     return null;
   }
   const prevModule = moduleIdx === 0 ? null : sortedModuleLinks[moduleIdx - 1];

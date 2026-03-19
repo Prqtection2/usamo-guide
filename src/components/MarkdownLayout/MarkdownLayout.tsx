@@ -1,10 +1,6 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import * as React from 'react';
 import { useContext, useState } from 'react';
-import {
-  moduleIDToSectionMap,
-  moduleIDToURLMap,
-} from '../../../content/ordering';
 import ConfettiContext from '../../context/ConfettiContext';
 import MarkdownLayoutContext from '../../context/MarkdownLayoutContext';
 import { ProblemSolutionContext } from '../../context/ProblemSolutionContext';
@@ -85,23 +81,33 @@ export default function MarkdownLayout({
 
   const data = useStaticQuery(graphql`
     query {
-      allXdm(filter: { fileAbsolutePath: { regex: "/content/" } }) {
+      allXdm(
+        filter: {
+          fileAbsolutePath: { regex: "/content/" }
+          fields: { division: { ne: null } }
+        }
+      ) {
         nodes {
           frontmatter {
             title
             id
+          }
+          fields {
+            division
           }
         }
       }
     }
   `);
   const moduleLinks = React.useMemo(() => {
-    return data.allXdm.nodes.map(cur => ({
-      id: cur.frontmatter.id,
-      title: cur.frontmatter.title,
-      section: moduleIDToSectionMap[cur.frontmatter.id],
-      url: moduleIDToURLMap[cur.frontmatter.id],
-    }));
+    return data.allXdm.nodes
+      .filter(cur => cur.fields?.division)
+      .map(cur => ({
+        id: cur.frontmatter.id,
+        title: cur.frontmatter.title ?? cur.frontmatter.id,
+        section: cur.fields.division,
+        url: `/${cur.fields.division}/${cur.frontmatter.id}`,
+      }));
   }, [data.allXdm]);
   const showConfetti = useContext(ConfettiContext);
   const handleCompletionChange = progress => {

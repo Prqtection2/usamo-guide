@@ -5,7 +5,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Space Grotesk', ...defaultTheme.fontFamily.sans],
+        sans: ['DM Mono', ...defaultTheme.fontFamily.mono],
+        mono: ['DM Mono', ...defaultTheme.fontFamily.mono],
       },
       boxShadow: {
         xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',

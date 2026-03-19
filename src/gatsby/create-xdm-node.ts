@@ -1,5 +1,6 @@
 import { createContentDigest } from 'gatsby-core-utils';
 import graymatter from 'gray-matter';
+import path from 'path';
 import rehypeRaw from 'rehype-raw';
 import remarkAutolinkHeadings from 'remark-autolink-headings';
 import remarkExternalLinks from 'remark-external-links';
@@ -99,6 +100,25 @@ export async function createXdmNode({ id, node, content }, api) {
   // )
 
   const { data: frontmatter } = graymatter(content);
+  const fileBaseName = node.absolutePath
+    ? path.parse(node.absolutePath).name
+    : node.name || 'untitled';
+  const normalizeId = (value: string) =>
+    value
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  const normalizedFileId = normalizeId(fileBaseName) || 'untitled';
+
+  // Keep schema constraints satisfied even for scratch MDX files.
+  if (!frontmatter.title || typeof frontmatter.title !== 'string') {
+    frontmatter.title = fileBaseName;
+  }
+  if (!frontmatter.id || typeof frontmatter.id !== 'string') {
+    frontmatter.id = normalizedFileId;
+  }
+
   xdmNode = {
     ...xdmNode,
     body: compiledResult,

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap');
 @import 'tailwindcss';
 @import './theme.css' layer(base);
 
@@ -47,9 +48,16 @@
   button,
   [role='button'] {
     cursor: pointer;
+    font: inherit;
   }
   button:disabled,
   [role='button']:disabled {
     cursor: default;
+  }
+
+  html,
+  body {
+    font-family: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, Monaco,
+      Consolas, 'Liberation Mono', 'Courier New', monospace;
   }
 }

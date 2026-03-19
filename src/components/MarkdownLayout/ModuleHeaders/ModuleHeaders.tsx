@@ -1,11 +1,7 @@
 import { ExternalLinkIcon } from '@heroicons/react/solid';
 import * as React from 'react';
 import { useContext } from 'react';
-import {
-  moduleIDToSectionMap,
-  moduleIDToURLMap,
-  SECTION_LABELS,
-} from '../../../../content/ordering';
+import { SECTION_LABELS } from '../../../../content/ordering';
 import { useMarkdownLayout } from '../../../context/MarkdownLayoutContext';
 import { useMarkdownProblems } from '../../../context/MarkdownProblemListsContext';
 import { ProblemSolutionContext } from '../../../context/ProblemSolutionContext';
@@ -69,11 +65,15 @@ export default function ModuleHeaders({
     const modulesThatHaveProblem =
       problemSolutionContext.modulesThatHaveProblem;
     moduleHeaderLinks = modulesThatHaveProblem.map(module => {
+      const moduleLink = moduleLinks.find(x => x.id === module.id);
+      if (!moduleLink) {
+        return {
+          label: module.title,
+        };
+      }
       return {
-        label: `${SECTION_LABELS[moduleIDToSectionMap[module.id]]} - ${
-          module.title
-        }`,
-        url: `${moduleIDToURLMap[module.id]}#problem-${problem!.uniqueId}`,
+        label: `${SECTION_LABELS[moduleLink.section]} - ${module.title}`,
+        url: `${moduleLink.url}#problem-${problem!.uniqueId}`,
       };
     });
   }
