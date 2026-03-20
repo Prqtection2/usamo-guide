@@ -260,6 +260,7 @@ exports.onCreateNode = async api => {
     if (!node.frontmatter?.id || !node.frontmatter?.title) {
       return;
     }
+
     const contentRoot = path.join(__dirname, 'content');
     const relativeFromContent = path.relative(contentRoot, node.fileAbsolutePath);
     const inferredDivision =
@@ -288,6 +289,12 @@ exports.onCreateNode = async api => {
       });
     }
   }
+};
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    cache: false,
+  });
 };
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
