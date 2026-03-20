@@ -61,7 +61,7 @@ const MODULE_ORDERING: { [key in SectionID]: Chapter[] } = {
     },
     {
       name: 'Counting Fundamentals',
-      items: ['counting-fundamentals'],
+      items: ['counting-fundamentals', 'inclusion-exclusion-basic'],
     },
     {
       name: 'Geometry Basics',
