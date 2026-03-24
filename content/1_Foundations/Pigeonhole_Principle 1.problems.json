@@ -11,8 +11,10 @@
       "tags": [
         "Pigeonhole Principle",
         "Remainders",
-        "Integer Properties"
+        "Modular Arithmetic",
+        "Probability"
       ],
+      "statement": "Six distinct positive integers are randomly chosen between $1$ and $2006$, inclusive. What is the probability that some pair of these integers has a difference that is a multiple of $5$?",
       "solutionMetadata": {
         "kind": "none"
       }
@@ -26,9 +28,11 @@
       "isStarred": true,
       "tags": [
         "Pigeonhole Principle",
-        "Counting",
-        "Sequences"
+        "Parity",
+        "Probability",
+        "Counting"
       ],
+      "statement": "The numbers $1, 2, 3, \\ldots, 9$ are randomly placed into the squares of a $3 \\times 3$ grid. Each square gets one number, and each of the numbers is used once. What is the probability that the sum of the numbers in each row and each column is odd?",
       "solutionMetadata": {
         "kind": "none"
       }
@@ -43,8 +47,9 @@
       "tags": [
         "Pigeonhole Principle",
         "Combinatorics",
-        "Casework"
+        "Set Theory"
       ],
+      "statement": "Suppose that $S$ is a subset of $\\{1, 2, 3, \\ldots, 25\\}$ such that the sum of any two (not necessarily distinct) elements of $S$ is never an element of $S$. What is the maximum number of elements $S$ may contain?",
       "solutionMetadata": {
         "kind": "none"
       }
