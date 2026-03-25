@@ -1,4 +1,116 @@
 {
   "MODULE_ID": "vieta-formulas",
-  "practice": []
+  "practice": [
+  {
+    "uniqueId": "aime-1983-3",
+    "name": "Problem 3 (1983 AIME)",
+    "url": "https://artofproblemsolving.com/wiki/index.php/1983_AIME_Problems/Problem_3",
+    "source": "AIME",
+    "difficulty": "Medium",
+    "isStarred": false,
+    "tags": [
+      "Algebra",
+      "Quadratic",
+      "Substitution"
+    ],
+    "statement": "What is the product of the real roots of the equation (x^2 - 10x + 22)^2 = 4(x^2 - 10x + 6)?",
+    "solutionMetadata": {
+      "kind": "none"
+    }
+  },
+  {
+    "uniqueId": "amc12b-2023-14",
+    "name": "Problem 14 (2023 AMC 12B)",
+    "url": "https://artofproblemsolving.com/wiki/index.php/2023_AMC_12B_Problems/Problem_14",
+    "source": "AMC 12B",
+    "difficulty": "Medium",
+    "isStarred": false,
+    "tags": [
+      "Algebra",
+      "Polynomials",
+      "Vieta's Formulas"
+    ],
+    "statement": "For how many ordered pairs of integers (a, b) does the polynomial x^3 + ax + b have three distinct integer roots?",
+    "solutionMetadata": {
+      "kind": "none"
+    }
+  },
+  {
+    "uniqueId": "amc10a-2003-18",
+    "name": "Problem 18 (2003 AMC 10A)",
+    "url": "https://artofproblemsolving.com/wiki/index.php/2003_AMC_10A_Problems/Problem_18",
+    "source": "AMC 10A",
+    "difficulty": "Easy",
+    "isStarred": false,
+    "tags": [
+      "Algebra",
+      "Quadratic",
+      "Vieta's Formulas"
+    ],
+    "statement": "What is the sum of the reciprocals of the roots of the equation 2x^2 - 5x + 7 = 0?",
+    "solutionMetadata": {
+      "kind": "none"
+    }
+  },
+  {
+    "uniqueId": "amc12b-2005-12",
+    "name": "Problem 12 (2005 AMC 12B)",
+    "url": "https://artofproblemsolving.com/wiki/index.php/2005_AMC_12B_Problems/Problem_12",
+    "source": "AMC 12B",
+    "difficulty": "Medium",
+    "isStarred": false,
+    "tags": [],
+    "statement": "Problem statement available at the Art of Problem Solving wiki.",
+    "solutionMetadata": {
+      "kind": "none"
+    }
+  },
+  {
+    "uniqueId": "amc10a-2020-5",
+    "name": "Problem 5 (2020 AMC 10A)",
+    "url": "https://artofproblemsolving.com/wiki/index.php/2020_AMC_10A_Problems/Problem_5",
+    "source": "AMC 10A",
+    "difficulty": "Easy",
+    "isStarred": false,
+    "tags": [
+      "Algebra",
+      "Absolute Value",
+      "Equations"
+    ],
+    "statement": "What is the sum of all real numbers x for which (x - 1)^2 = |x - 1| + 2?",
+    "solutionMetadata": {
+      "kind": "none"
+    }
+  },
+  {
+    "uniqueId": "amc12b-2002-6",
+    "name": "Problem 6 (2002 AMC 12B)",
+    "url": "https://artofproblemsolving.com/wiki/index.php/2002_AMC_12B_Problems/Problem_6",
+    "source": "AMC 12B",
+    "difficulty": "Easy",
+    "isStarred": false,
+    "tags": [
+      "Algebra",
+      "Quadratic",
+      "Vieta's Formulas"
+    ],
+    "statement": "Suppose that a and b are nonzero real numbers, and that the equation x^2 + ax + b = 0 has solutions a and b. Then the pair (a, b) is:",
+    "solutionMetadata": {
+      "kind": "none"
+    }
+  },
+  {
+    "uniqueId": "amc12b-2015-12",
+    "name": "Problem 12 (2015 AMC 12B)",
+    "url": "https://artofproblemsolving.com/wiki/index.php/2015_AMC_12B_Problems/Problem_12",
+    "source": "AMC 12B",
+    "difficulty": "Medium",
+    "isStarred": false,
+    "tags": [],
+    "statement": "Problem statement available at the Art of Problem Solving wiki.",
+    "solutionMetadata": {
+      "kind": "none"
+    }
+  }
+]
 }
