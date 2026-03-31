@@ -117,7 +117,7 @@ export default function ProblemsPage(props: PageProps<DataProps>) {
                 className={heroCardClasses}
                 style={{
                   backgroundImage:
-                    "linear-gradient(180deg, rgba(129, 41, 8, 0.18) 0%, rgba(129, 41, 8, 0.32) 100%), url('/images/Untitled_design.png')",
+                    "linear-gradient(180deg, rgba(129, 41, 8, 0.18) 0%, rgba(129, 41, 8, 0.32) 100%), url('/images/Untitled_Design.png')",
                   backgroundPosition: 'left bottom',
                   backgroundSize: '100% auto',
                   backgroundRepeat: 'no-repeat',
