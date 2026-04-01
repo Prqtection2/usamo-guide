@@ -4,6 +4,7 @@ title: Inequalities Foundations
 author: Mehul Biala
 description: A comprehensive guide to interval bounding, absolute value geometry, quadratic optimization, and the QM-AM-GM-HM means chain.
 prerequisites: ["algebra-basics"]
+---
 
 ## Overview
 
@@ -40,21 +41,9 @@ Absolute value is one of the most frequently tested concepts on the AMC. While t
 
 ### Core Inequality Forms:
 
-- **The "Less Than" Trap (Inside the Radius):**
-  
-  $$
-  |x| \le a \implies -a \le x \le a
-  $$
-  
-  *Geometric meaning:* The distance from $x$ to $0$ is at most $a$. The solutions are "trapped" between $-a$ and $a$.
+- **The "Less Than" Trap (Inside the Radius):** $|x| \le a \implies -a \le x \le a$. *Geometric meaning:* The distance from $x$ to $0$ is at most $a$. The solutions are "trapped" between $-a$ and $a$.
 
-- **The "Greater Than" Split (Outside the Radius):**
-  
-  $$
-  |x| \ge a \implies x \le -a \text{ or } x \ge a
-  $$
-  
-  *Geometric meaning:* The distance from $x$ to $0$ is at least $a$. The solutions split outward in two opposite directions.
+- **The "Greater Than" Split (Outside the Radius):** $|x| \ge a \implies x \le -a \text{ or } x \ge a$. *Geometric meaning:* The distance from $x$ to $0$ is at least $a$. The solutions split outward in two opposite directions.
 
 **Pro-Tip:** $|x - 5| \le 3$ simply means "$x$ is within 3 units of 5." The range is instantly $[5-3, 5+3] \implies [2, 8]$.
 
@@ -64,14 +53,9 @@ The fundamental rule of real numbers is **The Trivial Inequality**: for any real
 
 When dealing with quadratics like $ax^2 + bx + c$, you have two ways to find the extreme value (minimum if $a > 0$, maximum if $a < 0$):
 
-1. **Completing the Square:** Group terms to form $a(x-h)^2 + k$. By the Trivial Inequality, the squared term's minimum is $0$, so the expression's minimum is $k$.
-2. **The Vertex Shortcut:** For contest math, speed is critical. The vertex of a parabola always occurs at:
-   
-   $$
-   x = \frac{-b}{2a}
-   $$
-   
-   Simply calculate this $x$-value and plug it back into the expression to find the maximum or minimum bound.
+**Completing the Square:** Group terms to form $a(x-h)^2 + k$. By the Trivial Inequality, the squared term's minimum is $0$, so the expression's minimum is $k$.
+
+**The Vertex Shortcut:** For contest math, speed is critical. The vertex of a parabola always occurs at $x = -b/(2a)$. Simply calculate this $x$-value and plug it back into the expression to find the maximum or minimum bound.
 
 ## 4. Symmetry, Equalization, and Matching
 
@@ -92,29 +76,29 @@ For example, if you have weights $3$ and $2$, and variables $a$ and $b$ where $a
 
 While you are likely familiar with the standard average (the Arithmetic Mean), mathematics actually defines several types of "means" or averages. For any set of $n$ **strictly positive** real numbers $x_1, x_2, \dots, x_n$, we define four primary means:
 
-- **Quadratic Mean (QM / RMS):** Also called the Root Mean Square. It squares the numbers before averaging them, then takes the square root.
-  
-  $$
-  QM = \sqrt{\frac{x_1^2 + x_2^2 + \dots + x_n^2}{n}}
-  $$
+**Quadratic Mean (QM / RMS):** Also called the Root Mean Square. It squares the numbers before averaging them, then takes the square root.
 
-- **Arithmetic Mean (AM):** The standard average.
-  
-  $$
-  AM = \frac{x_1 + x_2 + \dots + x_n}{n}
-  $$
+$$
+QM = ((x_1^2 + x_2^2 + ... + x_n^2)/n)^(1/2)
+$$
 
-- **Geometric Mean (GM):** Multiplies the numbers together and takes the $n$-th root.
-  
-  $$
-  GM = \sqrt[n]{x_1 x_2 \dots x_n}
-  $$
+**Arithmetic Mean (AM):** The standard average.
 
-- **Harmonic Mean (HM):** The reciprocal of the average of the reciprocals. 
-  
-  $$
-  HM = \frac{n}{\frac{1}{x_1} + \frac{1}{x_2} + \dots + \frac{1}{x_n}}
-  $$
+$$
+AM = (x_1 + x_2 + ... + x_n)/n
+$$
+
+**Geometric Mean (GM):** Multiplies the numbers together and takes the $n$-th root.
+
+$$
+GM = (x_1 x_2 ... x_n)^(1/n)
+$$
+
+**Harmonic Mean (HM):** The reciprocal of the average of the reciprocals.
+
+$$
+HM = n/((1/x_1) + (1/x_2) + ... + (1/x_n))
+$$
 
 **The Inequality Chain:**
 
@@ -192,11 +176,11 @@ The range is $[-1, 4]$.
 Find the minimum value of $f(x) = 3x^2 - 12x + 19$.
 
 **Solution:**
-Instead of completing the square, we use the vertex formula $x = \frac{-b}{2a}$.
+Instead of completing the square, we use the vertex formula $x = -b/(2a)$.
 Here, $a = 3$ and $b = -12$.
 
 $$
-x = \frac{-(-12)}{2(3)} = \frac{12}{6} = 2
+x = -(-12)/(2(3)) = 12/6 = 2
 $$
 
 The minimum occurs at $x=2$. Plug this back into the expression:
@@ -209,34 +193,34 @@ The minimum value is $7$.
 
 ### Example 4: Classic AM-GM Optimization
 
-If $x > 0$, find the minimum possible value of the expression $x^2 + \frac{16}{x^2}$.
+If $x > 0$, find the minimum possible value of the expression $x^2 + 16/x^2$.
 
 **Solution:**
-We are asked to minimize a sum of strictly positive terms. Notice that if we multiply the two terms, the variables cancel out: $x^2 \cdot \frac{16}{x^2} = 16$. A constant product is the universal trigger to use AM-GM.
+We are asked to minimize a sum of strictly positive terms. Notice that if we multiply the two terms, the variables cancel out: $x^2 \cdot (16/x^2) = 16$. A constant product is the universal trigger to use AM-GM.
 
-Let $a = x^2$ and $b = \frac{16}{x^2}$.
-
-$$
-\frac{a + b}{2} \ge \sqrt{ab}
-$$
+Let $a = x^2$ and $b = 16/x^2$.
 
 $$
-\frac{x^2 + \frac{16}{x^2}}{2} \ge \sqrt{x^2 \cdot \frac{16}{x^2}}
+(a + b)/2 \ge (ab)^(1/2)
 $$
 
 $$
-\frac{x^2 + \frac{16}{x^2}}{2} \ge \sqrt{16} = 4
+(x^2 + 16/x^2)/2 \ge (x^2 \cdot 16/x^2)^(1/2)
 $$
 
 $$
-x^2 + \frac{16}{x^2} \ge 8
+(x^2 + 16/x^2)/2 \ge 16^(1/2) = 4
 $$
 
-*Verify the equality condition:* Equality happens if and only if $a = b \implies x^2 = \frac{16}{x^2} \implies x^4 = 16$. Since $x > 0$, $x = 2$. Because a valid $x$ exists, the minimum value is confidently **$8$**.
+$$
+x^2 + 16/x^2 \ge 8
+$$
+
+*Verify the equality condition:* Equality happens if and only if $a = b \implies x^2 = 16/x^2 \implies x^4 = 16$. Since $x > 0$, $x = 2$. Because a valid $x$ exists, the minimum value is confidently **$8$**.
 
 ### Example 5: AM-HM for Reciprocal Sums
 
-Let $a$ and $b$ be positive real numbers such that $a + b = 1$. Find the minimum value of $\frac{1}{a} + \frac{1}{b}$.
+Let $a$ and $b$ be positive real numbers such that $a + b = 1$. Find the minimum value of $1/a + 1/b$.
 
 **Solution:**
 We are given a constant sum and asked to minimize the sum of their reciprocals. 
@@ -244,22 +228,22 @@ We are given a constant sum and asked to minimize the sum of their reciprocals.
 Apply the AM-HM inequality ($AM \ge HM$):
 
 $$
-\frac{a + b}{2} \ge \frac{2}{\frac{1}{a} + \frac{1}{b}}
+(a + b)/2 \ge 2/((1/a) + (1/b))
 $$
 
 Substitute $a + b = 1$:
 
 $$
-\frac{1}{2} \ge \frac{2}{\frac{1}{a} + \frac{1}{b}}
+1/2 \ge 2/((1/a) + (1/b))
 $$
 
-Multiply both sides by $\left(\frac{1}{a} + \frac{1}{b}\right)$ and multiply by $2$:
+Multiply both sides by $(1/a + 1/b)$ and multiply by $2$:
 
 $$
-\frac{1}{a} + \frac{1}{b} \ge 4
+1/a + 1/b \ge 4
 $$
 
-*Verify the equality condition:* Equality holds when $a = b$. Since $a + b = 1$, this means $a = 0.5$ and $b = 0.5$. Testing this: $\frac{1}{0.5} + \frac{1}{0.5} = 2 + 2 = 4$. The minimum value is **$4$**.
+*Verify the equality condition:* Equality holds when $a = b$. Since $a + b = 1$, this means $a = 0.5$ and $b = 0.5$. Testing this: $1/0.5 + 1/0.5 = 2 + 2 = 4$. The minimum value is **$4$**.
 
 ## Common Pitfalls
 
