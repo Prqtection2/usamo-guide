@@ -92,6 +92,12 @@ const plugins = [
     },
   },
   {
+    resolve: `gatsby-plugin-sitemap`,
+    options: {
+      excludes: ['/404', '/404.html', '/dev-404-page', '/offline-plugin-app-shell-fallback'],
+    },
+  },
+  {
     // This plugin must be placed last in your list of plugins to ensure that it can query all the GraphQL data
     resolve: 'gatsby-plugin-algolia',
     options: {

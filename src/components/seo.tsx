@@ -43,6 +43,7 @@ function SEO({
       ? `${site.siteMetadata.siteUrl}${metaImage.src}`
       : null;
   const canonical = pathname ? `${site.siteMetadata.siteUrl}${pathname}` : null;
+  const normalizedCanonical = canonical || site.siteMetadata.siteUrl;
   return (
     <Helmet
       htmlAttributes={{
@@ -83,8 +84,20 @@ function SEO({
           content: `website`,
         },
         {
+          property: `og:url`,
+          content: normalizedCanonical,
+        },
+        {
+          name: `robots`,
+          content: `index,follow`,
+        },
+        {
           name: `twitter:creator`,
           content: site.siteMetadata.author,
+        },
+        {
+          name: `twitter:url`,
+          content: normalizedCanonical,
         },
         {
           name: `twitter:title`,
@@ -113,6 +126,10 @@ function SEO({
                 {
                   name: 'twitter:card',
                   content: 'summary_large_image',
+                },
+                {
+                  name: 'twitter:image',
+                  content: image,
                 },
               ]
             : [
