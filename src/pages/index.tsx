@@ -152,9 +152,9 @@ export default function IndexPage({ path }): JSX.Element {
           <div className="h-6 sm:h-12"></div>
 
           <div className="flex flex-1 flex-col justify-center">
-            <div className="h-8"></div>
+            <div className="h-4"></div>
 
-            <div className="mb-4 flex justify-center">
+            <div className="mb-2 flex justify-center">
               <a
                 href="#"
                 className="inline-flex items-center rounded-full border border-orange-300/80 bg-linear-to-r from-orange-100 to-amber-100 px-6 py-3 text-base font-extrabold tracking-wide text-orange-900 shadow-[0_8px_24px_rgba(251,146,60,0.25)] transition-transform duration-200 hover:-translate-y-0.5 hover:scale-105 dark:border-orange-700/60 dark:from-orange-900/40 dark:to-amber-900/30 dark:text-orange-100"
@@ -167,7 +167,7 @@ export default function IndexPage({ path }): JSX.Element {
               <h1
                 className={classNames(
                   usamoTitleClasses,
-                  'mx-auto h-0 w-full max-w-4xl flex-row items-center justify-center pb-4 leading-snug font-semibold dark:visible dark:h-auto'
+                  'mx-auto h-0 w-full max-w-4xl flex-row items-center justify-center pb-1 leading-tight font-semibold dark:visible dark:h-auto'
                 )}
               >
                 A Clear Roadmap from
@@ -176,7 +176,7 @@ export default function IndexPage({ path }): JSX.Element {
               </h1>
             </div>
 
-            <div className="h-6 sm:h-8"></div>
+            <div className="h-2 sm:h-3"></div>
 
             <p className="font-brand text-8 text-center leading-snug text-gray-800 sm:text-xl md:!leading-normal 2xl:text-3xl dark:text-gray-300">
             Structured topics, curated problems, and a clear path to Olympiad-level problem solving
