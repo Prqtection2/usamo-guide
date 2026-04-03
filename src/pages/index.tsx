@@ -629,6 +629,14 @@ export default function IndexPage({ path }): JSX.Element {
             <Link to="/license" className="underline">
               Learn More.
             </Link>
+            {' | '}
+            <Link to="/privacy-policy" className="underline">
+              Privacy Policy
+            </Link>
+            {' | '}
+            <Link to="/terms-of-service" className="underline">
+              Terms of Service
+            </Link>
           </p>
         </div>
       </div>
