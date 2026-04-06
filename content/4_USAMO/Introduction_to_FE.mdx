@@ -1,0 +1,78 @@
+---
+id: introduction-to-function-equations
+title: Introduction to function equations
+author: Nico Young
+description: Introduction for FE beginners
+prerequisites: []
+---
+
+## Overview
+
+Functional Equation, often abbriviated as FE, is a famous topic in math
+olympiads nowadays. This page is for those who have no experience with FE's.
+
+## What is functional equation?
+
+Almost 90% of the FE's in olympiad goes as follows:
+
+_Let $A$, $B$ be a set. Find all functions $f\colon A\rightarrow B$ such that
+(some equation)_
+
+Here $A$ and $B$ can be anything, but most of the time it's $\mathbb{Z_{>0}}$,
+$\mathbb{Z}$, or $\mathbb{R}$.
+
+### common mistake
+
+Note that $f$ can be **_anything_** as long as it's from $A$ to $B$. We
+introduce few common pitfalls about the definition of functions:
+
+- $f$ does not need to be a polynomial.
+- $f$ does not need to be differentiatable.
+- $f$ does not need to be continuous.
+
+So think $f$ as an arrow rather than a manipulation. And indeed there's some
+problem that have a ``strange'' solution which seems like it came out of
+nowhere. Let us show some example: some (real olympiad!) problem have solutions
+with
+
+$$
+f(x)=
+\begin{cases}
+    \text{whatever odd} \qquad \text{ if $x=1$} \\
+    1 \qquad \text{$x>1$ odd} \\
+    2 \qquad \text{$x>1$ even}
+  \end{cases},
+$$
+
+$$
+f(n) =
+  \begin{cases}
+  n+1 & n \text{ even} \\
+  n+5 & n \equiv 1 \pmod 4 \\
+  n-3 & n \equiv 3 \pmod 4.
+  \end{cases},
+$$
+
+$$
+f(x) =
+  \begin{cases}
+    +1 & x\notin S \\
+    -1 & x\in S
+  \end{cases}
+$$
+
+_where $S$ is any subset of $(-\infty, -\frac 23)$._
+
+These are often called a ``monster FE'', and we'll cover this in another module.
+
+TODO
+
+## injectivity and surjectivity
+
+TODO 
+
+
+
+## Practice Problems
+
+<Problems problems="practice" />
