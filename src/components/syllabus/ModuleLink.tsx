@@ -1,6 +1,10 @@
 import clsx from 'clsx';
 import { Link } from 'gatsby';
 import * as React from 'react';
+import ReactMarkdown from 'react-markdown';
+import rehypeKatex from 'rehype-katex';
+import remarkMath from 'remark-math';
+import 'katex/dist/katex.min.css';
 import { useUserProgressOnModules } from '../../context/UserDataContext/properties/userProgress';
 import { ModuleLinkInfo } from '../../models/module';
 import { FrequencyLabels } from '../Frequency';
@@ -158,14 +162,20 @@ const ModuleLink = ({ link }: { link: ModuleLinkInfo }): JSX.Element => {
             </p>
           )}
           {/* https://stackoverflow.com/questions/9229213/convert-iso-date-to-milliseconds-in-javascript */}
-          <p className="dark:group-hover:text-dark-high-emphasis block text-sm leading-5 text-gray-400 transition group-hover:text-sky-700">
-            {link.description}
+          <div className="dark:group-hover:text-dark-high-emphasis block text-sm leading-5 text-gray-400 transition group-hover:text-sky-700">
+            <ReactMarkdown
+              remarkPlugins={[remarkMath] as any}
+              rehypePlugins={[rehypeKatex]}
+              components={{ p: ({ children }) => <span>{children}</span> }}
+            >
+              {link.description}
+            </ReactMarkdown>
 
             <i>
               <br />
               {timeAgoString(link.gitAuthorTime)}
             </i>
-          </p>
+          </div>
         </div>
       </Link>
     </span>
