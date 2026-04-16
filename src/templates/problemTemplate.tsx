@@ -199,8 +199,11 @@ export default function ProblemTemplate(
           </nav>
 
           <header
-            className="mb-8 rounded-2xl border pb-6"
-            style={{ borderColor: BORDER, background: 'rgba(14, 11, 31, 0.34)' }}
+            className="mb-8 rounded-2xl pb-6 shadow-lg"
+            style={{
+              border: '1px solid rgba(229, 194, 255, 0.12)',
+              background: 'linear-gradient(180deg, rgba(54, 37, 72, 0.9) 0%, rgba(31, 22, 42, 0.94) 100%)',
+            }}
           >
             <div className="px-5 pt-5 sm:px-6 sm:pt-6">
             <h1 className="text-2xl font-bold sm:text-3xl" style={{ color: VANILLA }}>
@@ -288,12 +291,14 @@ export default function ProblemTemplate(
                 <button
                   type="button"
                   onClick={runCheck}
-                  className="rounded-md px-4 py-2 text-sm font-medium transition hover:opacity-95"
+                  className="purple-motion-effect inline-flex items-center justify-center rounded-full px-6 py-2 font-mono text-sm font-bold leading-tight"
                   style={{
-                    backgroundColor: PURPLE,
-                    color: VANILLA,
-                    border: `1px solid ${BORDER_STRONG}`,
-                  }}
+                    border: '1px solid rgba(240, 194, 255, 0.34)',
+                    background: 'linear-gradient(135deg, #5A2F87 0%, #C58BFF 100%)',
+                    '--pme-color': '#F4EDEA',
+                    '--pme-hover-color': '#201C36',
+                    '--pme-wipe-bg': '#F0C2FF',
+                  } as React.CSSProperties}
                 >
                   Check
                 </button>
@@ -320,10 +325,10 @@ export default function ProblemTemplate(
                 {problem.interaction.choices.map((choice, i) => (
                   <li key={i}>
                     <label
-                      className="flex cursor-pointer items-start gap-2 rounded-md border px-3 py-2"
+                      className="flex cursor-pointer items-start gap-2 rounded-2xl px-3 py-2 shadow-lg"
                       style={{
-                        borderColor: BORDER,
-                        background: 'rgba(14, 11, 31, 0.34)',
+                        border: '1px solid rgba(229, 194, 255, 0.12)',
+                        background: 'linear-gradient(180deg, rgba(54, 37, 72, 0.9) 0%, rgba(31, 22, 42, 0.94) 100%)',
                       }}
                     >
                       <input
@@ -375,12 +380,14 @@ export default function ProblemTemplate(
                 href={problem.solutionReveal.url}
                 target="_blank"
                 rel="nofollow noopener noreferrer"
-                className="inline-flex items-center rounded-md px-4 py-2.5 text-sm font-medium transition hover:opacity-95"
+                className="purple-motion-effect inline-flex items-center justify-center rounded-full px-6 py-2.5 font-mono text-sm font-bold leading-tight"
                 style={{
-                  backgroundColor: PURPLE,
-                  color: VANILLA,
-                  border: `1px solid ${BORDER_STRONG}`,
-                }}
+                  border: '1px solid rgba(240, 194, 255, 0.34)',
+                  background: 'linear-gradient(135deg, #5A2F87 0%, #C58BFF 100%)',
+                  '--pme-color': '#F4EDEA',
+                  '--pme-hover-color': '#201C36',
+                  '--pme-wipe-bg': '#F0C2FF',
+                } as React.CSSProperties}
               >
                 Show me the solution
                 <svg
@@ -397,21 +404,23 @@ export default function ProblemTemplate(
                 <button
                   type="button"
                   onClick={() => setSolutionOpen(o => !o)}
-                  className="rounded-md px-4 py-2.5 text-sm font-medium transition hover:opacity-95"
+                  className="purple-motion-effect inline-flex items-center justify-center rounded-full px-6 py-2.5 font-mono text-sm font-bold leading-tight"
                   style={{
-                    backgroundColor: PURPLE,
-                    color: VANILLA,
-                    border: `1px solid ${BORDER_STRONG}`,
-                  }}
+                    border: '1px solid rgba(240, 194, 255, 0.34)',
+                    background: 'linear-gradient(135deg, #5A2F87 0%, #C58BFF 100%)',
+                    '--pme-color': '#F4EDEA',
+                    '--pme-hover-color': '#201C36',
+                    '--pme-wipe-bg': '#F0C2FF',
+                  } as React.CSSProperties}
                 >
                   {solutionOpen ? 'Hide solution' : 'Show me the solution'}
                 </button>
                 {solutionOpen && (
                   <div
-                    className="mt-6 rounded-lg border p-4"
+                    className="mt-6 rounded-2xl p-4 shadow-lg"
                     style={{
-                      borderColor: BORDER,
-                      background: 'rgba(14, 11, 31, 0.72)',
+                      border: '1px solid rgba(229, 194, 255, 0.12)',
+                      background: 'linear-gradient(180deg, rgba(54, 37, 72, 0.9) 0%, rgba(31, 22, 42, 0.94) 100%)',
                     }}
                   >
                     <ProblemStatementMarkdown>
