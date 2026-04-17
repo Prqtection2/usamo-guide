@@ -2,10 +2,10 @@
   "MODULE_ID": "inverse-trig-aime",
   "practice": [
     {
-      "uniqueId": "unique-problem-01",
+      "uniqueId": "inverse-trig-aime-custom-01",
       "name": "Arctan Addition Chains",
-      "url": "",
-      "source": "My own",
+      "url": "https://usamoguide.com/",
+      "source": "Custom",
       "difficulty": "Normal",
       "isStarred": false,
       "tags": [
@@ -26,10 +26,10 @@
       }
     },
     {
-      "uniqueId": "unique-problem-02",
+      "uniqueId": "inverse-trig-aime-custom-02",
       "name": "Composition of Inverse Functions",
-      "url": "",
-      "source": "My own",
+      "url": "https://usamoguide.com/",
+      "source": "Custom",
       "difficulty": "Hard",
       "isStarred": true,
       "tags": [
@@ -50,10 +50,10 @@
       }
     },
     {
-      "uniqueId": "unique-problem-03",
+      "uniqueId": "inverse-trig-aime-custom-03",
       "name": "Inverse Trig Range Challenge",
-      "url": "",
-      "source": "My own",
+      "url": "https://usamoguide.com/",
+      "source": "Custom",
       "difficulty": "Hard",
       "isStarred": true,
       "tags": [

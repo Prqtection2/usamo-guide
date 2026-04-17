@@ -54,12 +54,12 @@
       "solutionMetadata": {
         "kind": "none"
       }
-    }
+    },
     {
-      "uniqueId": "unique-problem-01",
+      "uniqueId": "newton-sums-custom-01",
       "name": "Power Sums of a Cubic",
-      "url": "",
-      "source": "My own",
+      "url": "https://usamoguide.com/",
+      "source": "Custom",
       "difficulty": "Normal",
       "isStarred": false,
       "tags": [
@@ -79,10 +79,10 @@
       }
     },
     {
-      "uniqueId": "unique-problem-02",
+      "uniqueId": "newton-sums-custom-02",
       "name": "Reciprocal Roots and Symmetry",
-      "url": "",
-      "source": "My own",
+      "url": "https://usamoguide.com/",
+      "source": "Custom",
       "difficulty": "Hard",
       "isStarred": true,
       "tags": [
@@ -102,10 +102,10 @@
       }
     },
     {
-      "uniqueId": "unique-problem-03",
+      "uniqueId": "newton-sums-custom-03",
       "name": "Unknown Coefficient Recovery",
-      "url": "",
-      "source": "My own",
+      "url": "https://usamoguide.com/",
+      "source": "Custom",
       "difficulty": "Hard",
       "isStarred": true,
       "tags": [

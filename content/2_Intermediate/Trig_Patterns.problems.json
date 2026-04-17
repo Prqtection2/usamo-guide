@@ -2,10 +2,10 @@
   "MODULE_ID": "trig-patterns-aime",
   "practice": [
     {
-      "uniqueId": "unique-problem-01",
+      "uniqueId": "trig-patterns-aime-custom-01",
       "name": "Symmetric Sine Sums",
-      "url": "",
-      "source": "My own",
+      "url": "https://usamoguide.com/",
+      "source": "Custom",
       "difficulty": "Normal",
       "isStarred": false,
       "tags": [
@@ -25,10 +25,10 @@
       }
     },
     {
-      "uniqueId": "unique-problem-02",
+      "uniqueId": "trig-patterns-aime-custom-02",
       "name": "The Cotangent Product",
-      "url": "",
-      "source": "My own",
+      "url": "https://usamoguide.com/",
+      "source": "Custom",
       "difficulty": "Hard",
       "isStarred": true,
       "tags": [
@@ -48,10 +48,10 @@
       }
     },
     {
-      "uniqueId": "unique-problem-03",
+      "uniqueId": "trig-patterns-aime-custom-03",
       "name": "Double Angle Power Pattern",
-      "url": "",
-      "source": "My own",
+      "url": "https://usamoguide.com/",
+      "source": "Custom",
       "difficulty": "Hard",
       "isStarred": true,
       "tags": [
@@ -71,10 +71,10 @@
       }
     },
     {
-      "uniqueId": "unique-problem-04",
+      "uniqueId": "trig-patterns-aime-custom-04",
       "name": "Tangent Sum Identity",
-      "url": "",
-      "source": "My own",
+      "url": "https://usamoguide.com/",
+      "source": "Custom",
       "difficulty": "Normal",
       "isStarred": false,
       "tags": [
@@ -94,10 +94,10 @@
       }
     },
     {
-      "uniqueId": "unique-problem-05",
+      "uniqueId": "trig-patterns-aime-custom-05",
       "name": "Roots of Unity Trig Product",
-      "url": "",
-      "source": "My own",
+      "url": "https://usamoguide.com/",
+      "source": "Custom",
       "difficulty": "Hard",
       "isStarred": true,
       "tags": [

@@ -31,11 +31,11 @@
       "solutionMetadata": {
         "kind": "none"
       }
-    }
+    },
     {
-      "uniqueId": "unique-problem-01",
+      "uniqueId": "sequences-series-custom-01",
       "name": "Recursive Mean Sequence",
-      "url": "",
+      "url": "https://usamoguide.com/",
       "source": "Own",
       "difficulty": "Hard",
       "isStarred": true,
@@ -43,22 +43,22 @@
         "Recursion",
         "Arithmetic-Geometric Mean"
       ],
-      "statement": "Let $a_1 = 1, a_2 = 3$, and for $n \ge 3$, let $a_n$ be the unique positive real number such that $a_n^2 = a_{n-1} a_{n-2} + 4$. It is given that the sequence $a_n$ converges to a limit $L$. Find $L^2$.",
+      "statement": "Let $a_1 = 1, a_2 = 3$, and for $n \\ge 3$, let $a_n$ be the unique positive real number such that $a_n^2 = a_{n-1} a_{n-2} + 4$. It is given that the sequence $a_n$ converges to a limit $L$. Find $L^2$.",
       "interaction": {
         "type": "none"
       },
       "solutionReveal": {
         "mode": "inline",
-        "markdown": "## Solution\n\nAs $n \to \infty$, we assume the sequence converges to $L$. Substituting $L$ into the recurrence relation:\n$$L^2 = L \cdot L + 4$$\n$$L^2 = L^2 + 4$$\n\nThis suggests the sequence does not converge to a constant in a simple algebraic way, or the convergence is to infinity. However, if we examine the structure $a_n^2 - a_{n-1}a_{n-2} = 4$, we look for a constant difference or a telescoping property. \n\nLet's test terms:\n$a_1 = 1$\n$a_2 = 3$\n$a_3 = \sqrt{1 \cdot 3 + 4} = \sqrt{7}$\n$a_4 = \sqrt{3\sqrt{7} + 4}$\n\n*(Self-Correction)*: In a mid-AIME problem, this usually involves a hidden invariant. If the problem states it converges to $L$, we check if the recurrence was actually $a_n = \sqrt{a_{n-1}a_{n-2} + c}$. For this specific structure, the limit $L$ satisfies $L^2 - L^2 = 4$, which is an impossibility for finite $L$ unless the sequence is non-convergent or the relation leads to a specific bounded behavior. For the purpose of this mock AIME problem, we find that $L$ would be defined by the boundary of the growth rate."
+        "markdown": "## Solution\n\nAs $n \to \\infty$, we assume the sequence converges to $L$. Substituting $L$ into the recurrence relation:\n$$L^2 = L \\cdot L + 4$$\n$$L^2 = L^2 + 4$$\n\nThis suggests the sequence does not converge to a constant in a simple algebraic way, or the convergence is to infinity. However, if we examine the structure $a_n^2 - a_{n-1}a_{n-2} = 4$, we look for a constant difference or a telescoping property. \n\nLet's test terms:\n$a_1 = 1$\n$a_2 = 3$\n$a_3 = \\sqrt{1 \\cdot 3 + 4} = \\sqrt{7}$\n$a_4 = \\sqrt{3\\sqrt{7} + 4}$\n\n*(Self-Correction)*: In a mid-AIME problem, this usually involves a hidden invariant. If the problem states it converges to $L$, we check if the recurrence was actually $a_n = \\sqrt{a_{n-1}a_{n-2} + c}$. For this specific structure, the limit $L$ satisfies $L^2 - L^2 = 4$, which is an impossibility for finite $L$ unless the sequence is non-convergent or the relation leads to a specific bounded behavior. For the purpose of this mock AIME problem, we find that $L$ would be defined by the boundary of the growth rate."
       },
       "solutionMetadata": {
         "kind": "none"
       }
     },
     {
-      "uniqueId": "unique-problem-02",
+      "uniqueId": "sequences-series-custom-02",
       "name": "Telescoping Inverse Product",
-      "url": "",
+      "url": "https://usamoguide.com/",
       "source": "Own",
       "difficulty": "Normal",
       "isStarred": false,
@@ -79,9 +79,9 @@
       }
     },
     {
-      "uniqueId": "unique-problem-02",
+      "uniqueId": "sequences-series-custom-03",
       "name": "Floor Summation Sequence",
-      "url": "",
+      "url": "https://usamoguide.com/",
       "source": "Own",
       "difficulty": "Hard",
       "isStarred": true,
@@ -101,5 +101,6 @@
       "solutionMetadata": {
         "kind": "none"
       }
+    }
   ]
 }

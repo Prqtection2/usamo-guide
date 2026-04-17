@@ -2,10 +2,10 @@
   "MODULE_ID": "trig-product-sum-aime",
   "practice": [
     {
-      "uniqueId": "unique-problem-04",
+      "uniqueId": "trig-product-sum-custom-01",
       "name": "Product-to-Sum Chains",
-      "url": "",
-      "source": "My own",
+      "url": "https://usamoguide.com/",
+      "source": "Custom",
       "difficulty": "Normal",
       "isStarred": false,
       "tags": [
@@ -25,10 +25,10 @@
       }
     },
     {
-      "uniqueId": "unique-problem-05",
+      "uniqueId": "trig-product-sum-custom-02",
       "name": "Sum-to-Product Ratio",
-      "url": "",
-      "source": "My own",
+      "url": "https://usamoguide.com/",
+      "source": "Custom",
       "difficulty": "Hard",
       "isStarred": true,
       "tags": [
@@ -48,10 +48,10 @@
       }
     },
     {
-      "uniqueId": "unique-problem-06",
+      "uniqueId": "trig-product-sum-custom-03",
       "name": "Telescoping Sine Sum",
-      "url": "",
-      "source": "My own",
+      "url": "https://usamoguide.com/",
+      "source": "Custom",
       "difficulty": "Hard",
       "isStarred": true,
       "tags": [
