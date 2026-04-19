@@ -61,7 +61,7 @@ export default function AetherFlowHero(): JSX.Element {
       {/* ── Top left info stack ── */}
       <div className="relative z-10 px-6 pt-6 md:px-10">
         <div className="inline-flex flex-col items-center gap-3">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.24em] text-[#F5F0FA] backdrop-blur-md">
+          <a href="https://discord.gg/X2zx6u53XH" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.24em] text-[#F5F0FA] backdrop-blur-md transition-colors hover:bg-white/[0.12]">
             <img
               src="/images/discord.svg"
               alt=""
@@ -69,7 +69,7 @@ export default function AetherFlowHero(): JSX.Element {
               className="h-4 w-4 flex-shrink-0"
             />
             <span>Discord</span>
-          </div>
+          </a>
 
           <p className="max-w-xl font-mono text-[11px] font-bold uppercase leading-relaxed tracking-[0.24em] text-[#F5F0FA] opacity-90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
             Join our community!
@@ -137,7 +137,7 @@ export default function AetherFlowHero(): JSX.Element {
       {/* ── Bottom bar ── */}
       <div className="relative z-10 px-12 pb-12 pt-6 ml-auto flex max-w-2xl flex-col items-center gap-3 text-right">
         {/* Bottom-right: Open source */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.24em] text-[#F5F0FA] backdrop-blur-md">
+        <a href="https://github.com/usamoguide/usamo-guide" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.24em] text-[#F5F0FA] backdrop-blur-md transition-colors hover:bg-white/[0.12]">
           <svg viewBox="0 0 16 16" className="h-4 w-4 flex-shrink-0 fill-current" aria-hidden="true">
             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
@@ -149,7 +149,7 @@ export default function AetherFlowHero(): JSX.Element {
               0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
           </svg>
           <span>Star us on Github</span>
-        </div>
+        </a>
 
         <p className="max-w-xl font-mono text-[11px] font-bold uppercase leading-relaxed tracking-[0.24em] text-[#F5F0FA] opacity-90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
           We are fully <strong className="font-bold text-[#FBF7FF]">open source</strong>.
