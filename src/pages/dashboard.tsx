@@ -311,12 +311,12 @@ export default function DashboardPage(props: PageProps) {
                   className="inline-flex w-full items-center justify-center rounded-md bg-blue-800 px-5 py-3 text-base font-medium text-white transition hover:bg-blue-600 dark:hover:bg-blue-700"
                   to={
                     lastViewedModuleURL ||
-                    '/foundations/arithmetic-nt-basics'
+                    '/foundations/fraction-decimal-percent'
                   }
                 >
                   {lastViewedModuleURL
                     ? `Continue: ${moduleInfoById[lastViewedModuleID]?.title}`
-                    : 'Continue: Arithmetic and Number Theory Basics!'}
+                    : 'Continue: Fraction, Decimal, Percent Conversions!'}
                 </Link>
               </div>
             </div>

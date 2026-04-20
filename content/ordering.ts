@@ -94,7 +94,6 @@ const MODULE_ORDERING: { [key in SectionID]: Chapter[] } = {
       name: 'Old Content',
       description: 'Archived modules from the previous curriculum. These topics may be integrated into updated modules in the future.',
       items: [
-        'arithmetic-nt-basics',
         'linear-diophantine-equations',
         'chicken-mcnugget',
         'algebra-basics',
