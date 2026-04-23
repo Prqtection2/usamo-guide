@@ -18,6 +18,7 @@ const MODULE_ORDERING: { [key in SectionID]: Chapter[] } = {
       name: 'Arithmetic',
       description: 'Speed, mental math, and fluency with core numerical operations.',
       items: [
+        'arithmetic-nt-basics',
         'fraction-decimal-percent',
         'proportional-reasoning',
         'kinematics-rates',
@@ -38,6 +39,8 @@ const MODULE_ORDERING: { [key in SectionID]: Chapter[] } = {
       name: 'Algebra',
       description: 'Translating problems into equations, solving systems, and pattern recognition.',
       items: [
+        'algebra-basics',
+        'word-problems',
         'word-problem-translation',
         'linear-equations-inequalities',
         'systems-equations',
@@ -45,21 +48,39 @@ const MODULE_ORDERING: { [key in SectionID]: Chapter[] } = {
         'arithmetic-sequences',
         'exponent-rules',
         'polynomial-factoring-identities',
+        'quadratic-identities',
+        'cubic-factorizations',
+        'sfft-factoring',
         'extremal-principle',
+
+        // shifted from old content
+        'quadratic-formula',
+        'substitution-techniques',
+        'geometric-sequences',
       ],
     },
     {
       name: 'Geometry',
       description: 'Angles, triangles, circles, and spatial reasoning for contest problems.',
       items: [
+        'geometry-basics',
         'angle-chasing-parallel-lines',
         'triangle-fundamentals',
         'right-triangles',
-        'triangle-congruence-similarity',
+        'triangle-congruence-similarty',
         'special-quadrilaterals',
         'circle-angles',
         'composite-figures-shaded-areas',
         'coordinate-geometry-basics',
+
+        // shifted
+        'triangle-angle-sum',
+        'triangle-area-formulas',
+        'special-triangles',
+        'special-right-triangles',
+        'similarity-basics',
+        'proportionality-thales',
+        'line-equations',
       ],
     },
     {
@@ -74,10 +95,13 @@ const MODULE_ORDERING: { [key in SectionID]: Chapter[] } = {
         'modular-arithmetic-intro',
         'units-digit-periodicity',
         'base-number-systems',
+
+        // shifted
+        'linear-diophantine-equations',
       ],
     },
     {
-      name: 'Combinatorics & Probability',
+      name: 'Combinatorics and Probability',
       description: 'Counting techniques, probability fundamentals, and strategic enumeration.',
       items: [
         'counting-fundamentals',
@@ -88,43 +112,10 @@ const MODULE_ORDERING: { [key in SectionID]: Chapter[] } = {
         'geometric-probability-intro',
         'inclusion-exclusion',
         'stars-and-bars',
-      ],
-    },
-    {
-      name: 'Old Content',
-      description: 'Archived modules from the previous curriculum. These topics may be integrated into updated modules in the future.',
-      items: [
-        'linear-diophantine-equations',
-        'chicken-mcnugget',
-        'algebra-basics',
-        'quadratic-identities',
-        'quadratic-formula',
-        'substitution-techniques',
-        'sfft-factoring',
-        'cubic-factorizations',
-        'vieta-formulas',
-        'polynomial-manipulations',
-        'geometric-sequences',
-        'telescoping',
-        'amgm-inequality',
-        'cauchy-schwarz',
-        'inequalities-foundations',
+
+        // shifted
         'pascals-triangle-binomial-theorem',
         'pigeonhole-principles',
-        'geometry-basics',
-        'triangle-angle-sum',
-        'triangle-area-formulas',
-        'special-triangles',
-        'special-right-triangles',
-        'triangle-medians-centroid',
-        'angle-bisectors',
-        'altitudes-orthocenter',
-        'similarity-basics',
-        'proportionality-thales',
-        'law-of-sines',
-        'law-of-cosines',
-        'line-equations',
-        'word-problems',
       ],
     },
   ],
@@ -132,21 +123,25 @@ const MODULE_ORDERING: { [key in SectionID]: Chapter[] } = {
     {
       name: 'Advanced Algebra',
       description: 'Quadratics, systems, and polynomial identities for AMC 10/12.',
-      items: ['advanced-algebra',
+      items: [
+        'advanced-algebra',
         'higher-power-factorizations',
         'sophie-germain-identity',
         'newton-sums',
         'symmetric-polynomials',
         'symmetric-identity',
         'sum-formulas-powers',
+
+        // promoted from foundations
+        'vieta-formulas',
+        'polynomial-manipulations',
+        'telescoping',
       ],
     },
     {
       name: 'Functional Equations',
       description: 'Standard substitutions and symmetry-based approaches.',
-      items: [
-        'functional-equations',
-      ],
+      items: ['functional-equations'],
     },
     {
       name: 'Counting & Casework',
@@ -156,12 +151,23 @@ const MODULE_ORDERING: { [key in SectionID]: Chapter[] } = {
     {
       name: 'Probability',
       description: 'Conditional probability, geometric probability, and expected value.',
-      items: ['probability-intermediate', 'geometric-probability'],
+      items: [
+        'probability-intermediate',
+        'geometric-probability',
+        'expected-value',
+      ],
     },
     {
       name: 'Number Theory',
       description: 'Modular arithmetic, CRT, and divisibility techniques.',
-      items: ['modular-arithmetic', 'number-theory-intermediate', 'chinese-remainder-theorem'],
+      items: [
+        'modular-arithmetic',
+        'number-theory-intermediate',
+        'chinese-remainder-theorem',
+
+        // promoted from foundations
+        'chicken-mcnugget',
+      ],
     },
     {
       name: 'Euclidean Geometry',
@@ -173,6 +179,11 @@ const MODULE_ORDERING: { [key in SectionID]: Chapter[] } = {
         'tangent-lines',
         'tangent-circles',
         'arc-and-chord',
+
+        // promoted from foundations
+        'triangle-medians-centroid',
+        'angle-bisectors',
+        'altitudes-orthocenter',
       ],
     },
     {
@@ -182,8 +193,15 @@ const MODULE_ORDERING: { [key in SectionID]: Chapter[] } = {
     },
     {
       name: 'Inequalities',
-      description: 'Algebraic and geometric inequality techniques for AMC/AIME.',
-      items: ['inequalities'],
+      description: 'Algebraic and geometric inequality techniques.',
+      items: [
+        'inequalities',
+
+        // promoted from foundations
+        'amgm-inequality',
+        'cauchy-schwarz',
+        'inequalities-foundations',
+      ],
     },
     {
       name: 'Sequences & Series',
@@ -192,7 +210,7 @@ const MODULE_ORDERING: { [key in SectionID]: Chapter[] } = {
     },
     {
       name: 'Trigonometry',
-      description: 'Unit circle, identities, and trig equations for contest math.',
+      description: 'Identities, equations, and unit circle applications.',
       items: [
         'trig-unit-circle',
         'trig-identities',
@@ -202,11 +220,15 @@ const MODULE_ORDERING: { [key in SectionID]: Chapter[] } = {
         'trig-inverse-functions',
         'trig-triangle-laws',
         'trig-patterns',
+
+        // promoted from foundations
+        'law-of-sines',
+        'law-of-cosines',
       ],
     },
     {
       name: 'Complex Numbers',
-      description: 'Complex arithmetic, polar form, roots of unity, and geometry.',
+      description: 'Algebraic and geometric interpretation of complex numbers.',
       items: [
         'complex-basics',
         'complex-algebra',
@@ -262,8 +284,8 @@ const MODULE_ORDERING: { [key in SectionID]: Chapter[] } = {
       items: ['trig-contests'],
     },
     {
-      name: 'Inequalities (AIME)',
-      description: 'Schur, SOS, and multi-variable inequality techniques.',
+      name: 'Inequalities (AIME Level)',
+      description: 'Multi-variable and advanced inequality methods.',
       items: ['inequalities-advanced'],
     },
     {
