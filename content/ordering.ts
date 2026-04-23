@@ -119,6 +119,7 @@ const MODULE_ORDERING: { [key in SectionID]: Chapter[] } = {
       ],
     },
   ],
+
   intermediate: [
     {
       name: 'Advanced Algebra',
@@ -243,10 +244,11 @@ const MODULE_ORDERING: { [key in SectionID]: Chapter[] } = {
     },
     {
       name: 'Geometry Extensions',
-      description: 'Regular polygons and three-dimensional geometry.',
+      description: 'Additional geometric structures.',
       items: ['regular-polygons', 'three-d-geometry'],
     },
   ],
+
   advanced: [
     {
       name: 'Strong Number Theory',
@@ -299,40 +301,34 @@ const MODULE_ORDERING: { [key in SectionID]: Chapter[] } = {
       items: ['functional-equations-advanced'],
     },
   ],
+
   usamo: [
     {
       name: 'Proof Writing',
-      description: 'Structuring clear, rigorous proofs for olympiad submissions.',
       items: ['proof-writing-basics'],
     },
     {
-      name: 'Induction & Extremal',
-      description: 'Strong induction, well-ordering, and extremal principle arguments.',
+      name: 'Induction and Extremal Principle',
       items: ['induction-extremal'],
     },
     {
-      name: 'Graph Theory Intro',
-      description: 'Graphs, trees, coloring, and combinatorial structure.',
+      name: 'Graph Theory (Intro)',
       items: ['graph-theory-intro'],
     },
     {
       name: 'Advanced Inequalities',
-      description: 'Olympiad-level bounding with Schur, Muirhead, and mixing variables.',
       items: ['inequalities-olympiad'],
     },
     {
       name: 'Olympiad Number Theory',
-      description: 'Vieta jumping, infinite descent, and olympiad divisibility.',
       items: ['olympiad-number-theory', 'vieta-root-jumping'],
     },
     {
       name: 'Olympiad Geometry',
-      description: 'Synthetic and projective techniques for proof-based geometry.',
       items: ['olympiad-geometry'],
     },
     {
-      name: 'Strategy & Writeups',
-      description: 'Time management, problem selection, and solution presentation.',
+      name: 'Strategy and Writeups',
       items: ['strategy-writeup'],
     },
   ],
